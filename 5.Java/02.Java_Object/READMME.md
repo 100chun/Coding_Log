@@ -124,6 +124,15 @@ class wrap <W> {
 }
 ArrayList <Interger> listInt = new ArrayList<Interger>(); 
 ```
+* static
+* final
+
+
+**Collection : 자료 구조(Data Structure) 종류의 형태들을 자바 클래스로 구현한 모음집**
+* List : 순서가 있는 목록 (중복 가능)
+* Set : 순서가 없는 목록 (중복 불가)
+* Map : 키-값으로 이루어진 순서가 없는 목록 (값만 중복 가능)
+
 
 
 * final
