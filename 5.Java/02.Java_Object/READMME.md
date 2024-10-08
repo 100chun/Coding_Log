@@ -47,6 +47,46 @@ unbox = unbox + 100;
 Box = unbox;                        // Boxing
 ```
 
+## Generic
+* 외부에서 클래스와 내부 변수 자료형 선언
+* <> : 다이아몬드 연산자로 표현
+ * Wrapper 자료형
+ * Type 자료형 (범용적 자료형)
+
+|기호|설명|
+|-|-|
+|T|Type (타입)|
+|E|Element (요소-list)|
+|K|Key (키-Map)|
+|V|Value (값-Map)|
+|N|Number (숫자)|
+
+```
+* <ex> : 임의의 자료형
+class X {}
+class Y extends X {}                // Y의 조상 타입만 가능
+Y <X> ex = new ex<Y>(new Y());      // Y의 조상 X
+Y <A> exA = new ex<A>(new A());     // 오류 발생
+
+* <T> : Type 자료형
+[Type 자료형은 암묵적 규칙 (임의의 자료형에 규칙 적용)]
+Sample <K, V> map = new map<K, V>();     // 자료형 여러개 지정 가능
+class map <K, V> {}
+
+* <String> : wrapper 자료형
+class wrap <W> {
+  private <W> str;                      // Integer 자료형
+  <W> apper() {return str;}
+}
+ArrayList <Interger> listInt = new ArrayList<Interger>(); 
+```
+
+**Collection : 자료 구조(Data Structure) 종류의 형태들을 자바 클래스로 구현한 모음집**
+* List : 순서가 있는 목록 (중복 가능)
+* Set : 순서가 없는 목록 (중복 불가)
+* Map : 키-값으로 이루어진 순서가 없는 목록 (값만 중복 가능)
+
+
 **시각 표현**
 * Date : 일회용 날짜 표현
 * Calender : 실시간 날짜 표현
@@ -91,47 +131,9 @@ finally{                   // 최종 실행 코드
 }
 ```
 
-## Generic
-* 외부에서 클래스와 내부 변수 자료형 선언
-* <> : 다이아몬드 연산자로 표현
- * Wrapper 자료형
- * Type 자료형 (범용적 자료형)
-
-|기호|설명|
-|-|-|
-|T|Type (타입)|
-|E|Element (요소-list)|
-|K|Key (키-Map)|
-|V|Value (값-Map)|
-|N|Number (숫자)|
-
-```
-* <ex> : 임의의 자료형
-class X {}
-class Y extends X {}                // Y의 조상 타입만 가능
-Y <X> ex = new ex<Y>(new Y());      // Y의 조상 X
-Y <A> exA = new ex<A>(new A());     // 오류 발생
-
-* <T> : Type 자료형
-[Type 자료형은 암묵적 규칙 (임의의 자료형에 규칙 적용)]
-Sample <K, V> map = new map<K, V>();     // 자료형 여러개 지정 가능
-class map <K, V> {}
-
-* <String> : wrapper 자료형
-class wrap <W> {
-  private <W> str;                      // Integer 자료형
-  <W> apper() {return str;}
-}
-ArrayList <Interger> listInt = new ArrayList<Interger>(); 
-```
 * static
 * final
 
-
-**Collection : 자료 구조(Data Structure) 종류의 형태들을 자바 클래스로 구현한 모음집**
-* List : 순서가 있는 목록 (중복 가능)
-* Set : 순서가 없는 목록 (중복 불가)
-* Map : 키-값으로 이루어진 순서가 없는 목록 (값만 중복 가능)
 
 
 
