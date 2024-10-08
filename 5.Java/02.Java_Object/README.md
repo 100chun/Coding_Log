@@ -1,5 +1,4 @@
-# Object (9/26 ~ 
-## 상속
+# 상속 (9/24 ~ 
 -------
 **상속 (Inheritance) : 기존 클래스를 재활용하여 새로운 클래스 작성**
 * 부모 클래스 (Super Class) / 자식 클래스 (Sub ClasS) : 자식 클래스는 부모 클래스의 객체, 메서드 사용 가능
@@ -141,6 +140,8 @@ class main {
 	}
 }
 ```
+## Object
+---------
 ### Object Class : 모든 클래스가 상속 받는 최상위 부모 클래스
 * Library : 자동 import (import.java.lang.* )
 * 상속 : 자동 상속 (extends Object)
@@ -228,14 +229,15 @@ ArrayList <Interger> listInt = new ArrayList<Interger>();
 * Map : 키-값으로 이루어진 순서가 없는 목록 (값만 중복 가능)
 
 
-* static
-* final
+* static : 객체 없이 사용 가능한 전역 필드, 메소드
+* final : 수정 불가능한 필드, 메서드 (== 상수)
 
+```
+static int A = 30;		// 전역 변수
+final int B = 55;		// 상수
+static final double = 3.14;	// 전역 상수
+```
 
-
-
-* final
-* collection
 * jdbc
 * 람다스트림
 * 클래스 다이어그램
