@@ -266,8 +266,8 @@ break Exit;
    * public : 접근 제한 X
    * private : 해당 클래스 내에서만 접근 가능 
    * protected : 같은 패키지, 타 패키지의 자식 클래스에서 접근 가능
-   * static : 한 번만 생성되며 모든 인스턴스가 공유
-   * final : 한 번만 생성되며 값 변경 불가능 (상수)
+   * static : 한 번만 생성되며 객체 없이 사용 가능한 전역 필드, 메소드
+   * final : 한 번만 생성되며 수정 불가능한 필드, 메서드 (== 상수)
 
 * 메모리 영역
   1. Stack 영역 : {} 내에 생성되는 공간 (int, double)
@@ -280,6 +280,10 @@ break Exit;
 
 * *오버로딩 (OverLoading) : 매개변수의 수, 자료형에 따라 같은 이름의 다른 생성자 호출*
 ```
+static int A = 30;		  // 전역 변수
+final int B = 55;		  // 상수
+static final double = 3.14;	  // 전역 상수
+
 * Default (동일 package 내에 생성)
 class C01Person {					// 클래스 생성
     String name;
