@@ -1,49 +1,51 @@
-# 상속 (9/24 ~ 
+# Java Deep (9/24 ~ 
 -------
-**상속 (Inheritance) : 기존 클래스를 재활용하여 새로운 클래스 작성**
+### 상속 (Inheritance) : 기존 클래스를 재활용하여 새로운 클래스 작성
 * 부모 클래스 (Super Class) / 자식 클래스 (Sub ClasS) : 자식 클래스는 부모 클래스의 객체, 메서드 사용 가능
 * 업캐스팅 (UpCasting) : 부모 클래스 참조 변수를 하위 클래스에 연결 (자동형변환)
   - 자식 클래스 객체 사용 X -> DownCasting 필요 / 오버라이딩된 메소드 사용 O
 * 다운캐스팅 (DownCasting) : 부모 클래스 참조 변수의 하위 클래스 객체 사용을 위한 강제형변환
   - 자식 클래스 객체 사용 O
-* 오버라이딩 (OverRiding) : 상속 받은 메서드의 내용 변경 (재정의) -> 다형성
+
+* *오버라이딩 (OverRiding) : 상속 받은 메서드의 내용 변경 (재정의) -> 다형성*
 
 ```
 class Super {
-	int a;
-	void A() {
-		a = 10;
+    int a;
+        void A() {
+            a = 10;
 	}
 }
 class Sub extends Super { 	// Super 클래스 상속
-	int b;
-	void A() {		// OverRiding
-		a = 20;		// 상속 받은 객체 a 사용 가능
+    int b;
+        void A() {		// OverRiding
+            a = 20;		// 상속 받은 객체 a 사용 가능
 	}
 	void B() {
-		b = 50;
+            b = 50;
 	}
 }
 
 public static void main(String[] args) {
-	Super obj1 = new Super();
-	obj1.A();		
-	// obj1.B();		// 자식 클래스의 메서드 -> Err
+    Super obj1 = new Super();
+    obj1.A();		
+    // obj1.B();		// 자식 클래스의 메서드 -> Err
 
-	Sub obj2 = new Sub();
-	obj2.A();		// 부모 클래스 메서드
-	obj2.B();
+    Sub obj2 = new Sub();
+    obj2.A();			// 부모 클래스 메서드
+    obj2.B();
 
-	Super obj3 = new Sub();	// UpCasting <- 부모 클래스 obj3를 자식 클래스로 확장 (자동 형변환)
-	obj3.A();		// a = 20 <- OverRiding된 자식 클래스 메서드 호출 (Method 구조는 공유 메모리인 Class 영역에 저장)
-	// obj3.B();		// UpCasting 상태에서 자식 클래스 메서드 사용 불가 -> DownCasting 필요
+    Super obj3 = new Sub();	// UpCasting <- 부모 클래스 obj3를 자식 클래스로 확장 (자동 형변환)
+    obj3.A();			// a = 20 <- OverRiding된 자식 클래스 메서드 호출 (Method 구조는 공유 메모리인 Class 영역에 저장)
+    // obj3.B();		// UpCasting 상태에서 자식 클래스 메서드 사용 불가 -> DownCasting 필요
 
-	Sub obj4 = (Sub) obj3;	// DownCasting <- 부모 클래스 obj3를 자식 클래스로 변환 (강제 형변환)
-	obj4.A();
-	obj4.B();		// 자식 클래스의 메서드 사용 가능
+    Sub obj4 = (Sub) obj3;	// DownCasting <- 부모 클래스 obj3를 자식 클래스로 변환 (강제 형변환)
+    obj4.A();
+    obj4.B();			// 자식 클래스의 메서드 사용 가능
 }
 ```
-                     
+<br>
+
 **추상**
 * 추상 메소드 (abstract method) : 자식 클래스에서 오버라이딩해야 사용 가능한 클래스
 * 추상 클래스 (abstract class) : 하나 이상의 추상 메소드를 포함하는 클래스
@@ -52,95 +54,96 @@ public static void main(String[] args) {
 * 인터페이스 (Interface) : 동일한 메소드만 가지는 추상 클래스
   - 하위 클래스에 오버라이딩 강제성 부여
   - 코디 길이 증가 / 결합도 감소
-    
+  
 ```
 * 추상 클래스
-abstract class Super {					// 추상 클래스 선언
-	int n;
-	void n() {
-		n = 15;
-	}
-	abstract void func();				// 추상 메소드 선언 (인스턴스 X)
+abstract class Super {			// 추상 클래스 선언
+    int n;
+    void n() {
+        n = 15;
+    }
+    abstract void func();		// 추상 메소드 선언 (인스턴스 X)
 }
 class Sub1 extends Super {
-	int a;
-	Sub1(int a) {this.a = a;}
-	void func() {					// 자식 클래스에서 오버라이딩
-		a += 10;
-		System.out.println("a : " + a);
-	}
+    int a;
+    Sub1(int a) {this.a = a;}
+    void func() {			// 자식 클래스에서 오버라이딩
+        a += 10;
+        System.out.println("a : " + a);
+    }
 }
-class Sub2 extends Super {				// extends 다중 상속 X 
-	int b;
-	Sub2(int b) {this.b = b;}
-	void func() {					// 자식 클래스에서 오버라이딩
-		b--;
-		System.out.println("b : " + b);
-	}
+class Sub2 extends Super {		// extends 다중 상속 X 
+    int b;
+    Sub2(int b) {this.b = b;}
+    void func() {			// 자식 클래스에서 오버라이딩
+        b--;
+        System.out.println("b : " + b);
+    }
 }
 
 * 인터페이스
-interface Parent {					// interface 클래스 선언 == 부모 클래스
-	int NUM1 = 100;					// public static fianl 형태의 수 = 고정된 값 (객체 생성 X)
-	int NUM2 = 200;
-	void method1();
-	void method2(int num);
+interface Parent {			// interface 클래스 선언 == 부모 클래스
+    int NUM1 = 100;			// public static fianl 형태의 수 = 고정된 값 (객체 생성 X)
+    int NUM2 = 200;
+    void method1();
+    void method2(int num);
 }
-class Son1 implements Parent {				// implments 클래스 선언 == 자식 클래스
-	int num1;
-	int num2;
-	public void method1() {				// public으로 작성
-		num1 = NUM2;
-		System.out.println("num1 : " + num1);
-	}
-	public void method2(int num) {
-		num2 = num;
-		System.out.println("num2 : " + num2);
-	}
+class Son1 implements Parent {		// implments 클래스 선언 == 자식 클래스
+    int num1;
+    int num2;
+    public void method1() {		// public으로 작성
+        num1 = NUM2;
+        System.out.println("num1 : " + num1);
+    }
+public void method2(int num) {
+        num2 = num;
+        System.out.println("num2 : " + num2);
+    }
 }
-class Son2 extends Super implements Parent {		// extends, interface 동시 사용 가능 (extends 다음 interface)
-	int num3;
-	int num4;
-	int num5;
-	public void method1() {				// Parents method
-		num3 = 120;
-		System.out.println("num3 : " + num3);
-	}
-	public void method2(int num) {			// Parents method
-		num4 = num - NUM2;
-		System.out.println("num4 : " + num4);
-	}
-	void func() {					// Super method
-		num5 = NUM1 + NUM2;
-		System.out.println("num5 : " + num5);
-	}	
+class Son2 extends Super implements Parent {	// extends, interface 동시 사용 가능 (extends 다음 interface)
+    int num3;
+    int num4;
+    int num5;
+    public void method1() {			// Parents method
+        num3 = 120;
+        System.out.println("num3 : " + num3);
+    }
+    public void method2(int num) {		// Parents method
+        num4 = num - NUM2;
+        System.out.println("num4 : " + num4);
+    }
+    void func() {				// Super method
+        num5 = NUM1 + NUM2;
+        System.out.println("num5 : " + num5);
+    }	
 }
 
 class main {
-	public static void Abstract(Super abs) {	
-		abs.func();
-	}
-	public static void Interface(Parent inter) {	
-		inter.method1();
-		inter.method2(500);
-	}
-	public static void main(String[] args) {
-//		 Super obj = new Super();		// 추상 클래스는 객체 생성 불가
-		Sub1 obj2 = new Sub1(1);		// 자식 클래스는 객체 생성 가능
-		Sub2 obj3 = new Sub2(2);		// 자식 클래스는 객체 생성 가능
-		Super obj4 = (Super) obj3;		// UpCasting으로 부모 클래스 객체 생성
+    public static void Abstract(Super abs) {	
+        abs.func();
+    }
+    public static void Interface(Parent inter) {	
+        inter.method1();
+        inter.method2(500);
+    }
+    public static void main(String[] args) {
+//      Super obj = new Super();		// 추상 클래스는 객체 생성 불가
+        Sub1 obj2 = new Sub1(1);		// 자식 클래스는 객체 생성 가능
+        Sub2 obj3 = new Sub2(2);		// 자식 클래스는 객체 생성 가능
+        Super obj4 = (Super) obj3;		// UpCasting으로 부모 클래스 객체 생성
 
-		Abstract(new Sub1(10));
-		Abstract(new Sub2(5));
+        Abstract(new Sub1(10));
+        Abstract(new Sub2(5));
 		
-		Son2 ob = new Son2();			
-		Interface(new Son1());			// Parent method - interface
-		Interface(new Son2());			// Parent method - interface
-		ob.func();				// Super method - abstract
-	}
+        Son2 ob = new Son2();			
+        Interface(new Son1());			// Parent method - interface
+        Interface(new Son2());			// Parent method - interface
+        ob.func();				// Super method - abstract
+    }
 }
 ```
-             
+<br>
+
 ## Object
 ---------
 ### Object Class : 모든 클래스가 상속 받는 최상위 부모 클래스
@@ -160,6 +163,7 @@ public boolean equals(Object obj) {}  // 주소 같으면 true
 [hashcode는 객체 식별 코드]
 public int hashCode() {}              // Object.equal -> hashcode equal
 ```
+<br>
 
 **Wrapper Class: 기본 객체를 참조 객체로 표현 가능한 클래스**
 * 기본형 변수 (Primitive Type) : 비객체형 (null X)
@@ -189,14 +193,8 @@ int unbox = Box.intValue();         // 참조형 변수의 값 기본형 정수�
 unbox = unbox + 100;               
 Box = unbox;                        // Boxing
 ```
-          
-* static : 객체 없이 사용 가능한 전역 필드, 메소드
-* final : 수정 불가능한 필드, 메서드 (== 상수)
-```
-static int A = 30;		// 전역 변수
-final int B = 55;		// 상수
-static final double = 3.14;	// 전역 상수
-```  
+<br>
+
 ## Generic
 ----------
 * 외부에서 클래스와 내부 변수 자료형 선언
@@ -215,9 +213,9 @@ static final double = 3.14;	// 전역 상수
 ```
 * <ex> : 임의의 자료형
 class X {}
-class Y extends X {}                // Y의 조상 타입만 가능
-Y <X> ex = new ex<Y>(new Y());      // Y의 조상 X
-Y <A> exA = new ex<A>(new A());     // 오류 발생
+class Y extends X {}                	 // Y의 조상 타입만 가능
+Y <X> ex = new ex<Y>(new Y());     	 // Y의 조상 X
+Y <A> exA = new ex<A>(new A());    	 // 오류 발생
 
 * <T> : Type 자료형
 [Type 자료형은 암묵적 규칙 (임의의 자료형에 규칙 적용)]
@@ -231,7 +229,8 @@ class wrap <W> {
 }
 ArrayList <Interger> listInt = new ArrayList<Interger>(); 
 ```
-                         
+<br>
+
 **Collection : 자료 구조(Data Structure) 종류의 형태들을 자바 클래스로 구현한 모음집**
 * List : 순서가 있는 목록 (중복 가능)
 * Set : 순서가 없는 목록 (중복 불가)
