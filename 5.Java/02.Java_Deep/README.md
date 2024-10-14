@@ -1,7 +1,7 @@
 # Java Deep (9/24 ~ 9/27)
 -------
-### 상속 (Inheritance) : 기존 클래스를 재활용하여 새로운 클래스 작성
-* 부모 클래스 (Super Class) / 자식 클래스 (Sub ClasS) : 자식 클래스는 부모 클래스의 객체, 메서드 사용 가능
+## 상속 (Inheritance) : 기존 클래스를 재활용하여 새로운 클래스 작성
+* 부모 클래스 (Super Class) / 자식 클래스 (Sub Class) : 자식 클래스는 부모 클래스의 객체, 메서드 사용 가능
 * 업캐스팅 (UpCasting) : 부모 클래스 참조 변수를 하위 클래스에 연결 (자동형변환)
   - 자식 클래스 객체 사용 X -> DownCasting 필요 / 오버라이딩된 메소드 사용 O
 * 다운캐스팅 (DownCasting) : 부모 클래스 참조 변수의 하위 클래스 객체 사용을 위한 강제형변환
@@ -12,15 +12,15 @@
 ```
 class Super {
     int a;
-        void A() {
-            a = 10;
-	}
+    void A() {
+        a = 10;
+    }
 }
 class Sub extends Super { 	// Super 클래스 상속
     int b;
         void A() {		// OverRiding
             a = 20;		// 상속 받은 객체 a 사용 가능
-	}
+        }
 	void B() {
             b = 50;
 	}
@@ -29,24 +29,24 @@ class Sub extends Super { 	// Super 클래스 상속
 public static void main(String[] args) {
     Super obj1 = new Super();
     obj1.A();		
-    // obj1.B();		// 자식 클래스의 메서드 -> Err
+    // obj1.B();	      // 자식 클래스의 메서드 -> Err
 
     Sub obj2 = new Sub();
-    obj2.A();			// 부모 클래스 메서드
+    obj2.A();		     // 부모 클래스 메서드
     obj2.B();
 
-    Super obj3 = new Sub();	// UpCasting <- 부모 클래스 obj3를 자식 클래스로 확장 (자동 형변환)
-    obj3.A();			// a = 20 <- OverRiding된 자식 클래스 메서드 호출 (Method 구조는 공유 메모리인 Class 영역에 저장)
-    // obj3.B();		// UpCasting 상태에서 자식 클래스 메서드 사용 불가 -> DownCasting 필요
+    Super obj3 = new Sub();  // UpCasting <- 부모 클래스 obj3를 자식 클래스로 확장 (자동 형변환)
+    obj3.A();		     // a = 20 <- OverRiding된 자식 클래스 메서드 호출 (Method 구조는 공유 메모리인 Class 영역에 저장)
+    // obj3.B();	     // UpCasting 상태에서 자식 클래스 메서드 사용 불가 -> DownCasting 필요
 
-    Sub obj4 = (Sub) obj3;	// DownCasting <- 부모 클래스 obj3를 자식 클래스로 변환 (강제 형변환)
+    Sub obj4 = (Sub) obj3;   // DownCasting <- 부모 클래스 obj3를 자식 클래스로 변환 (강제 형변환)
     obj4.A();
-    obj4.B();			// 자식 클래스의 메서드 사용 가능
+    obj4.B();		     // 자식 클래스의 메서드 사용 가능
 }
 ```
 <br>
 
-**추상**
+### 추상
 * 추상 메소드 (abstract method) : 자식 클래스에서 오버라이딩해야 사용 가능한 클래스
 * 추상 클래스 (abstract class) : 하나 이상의 추상 메소드를 포함하는 클래스
   - 규격화 (하위 클래스에 강제성 부여)
@@ -165,7 +165,7 @@ public int hashCode() {}              // Object.equal -> hashcode equal
 ```
 <br>
 
-**Wrapper Class: 기본 객체를 참조 객체로 표현 가능한 클래스**
+### Wrapper Class: 기본 객체를 참조 객체로 표현 가능한 클래스
 * 기본형 변수 (Primitive Type) : 비객체형 (null X)
 * 참조형 변수 (Reference Type) : 기본형 변수를 제외한 나머지 변수 (클래스, 배열)
 
@@ -231,26 +231,6 @@ ArrayList <Interger> listInt = new ArrayList<Interger>();
 ```
 <br>
 
-**시각 표현**
-* Date : 일회용 날짜 표현
-* Calender : 실시간 날짜 표현
-* Time : 시간 표현
-```
-* Date
-[getYear, getMonth, getHours, getMinutes, getSeconds, getTime]
-Date date = new Date();
-System.out.println(date);
-System.out.println(date.getDay());          // 일~토 (0~6)
-
-* Calender
-import java.util.Calender;
-Calender cal = new Calender();
-[YEAR, MONTH, HOUR, MINUTE, SECOND]
-System.out.println(cal.DAY_OF_MONTH+1);     // 0부터
-System.out.println(cal.DAY_OF_WEEK);        // 일~토 (1~7)
-```
-<br>
-
 ## Exception
 * Error : 프로그램 코드로 처리 불가능한 오류 (메모리 부족)
 * Exception (예외) : 프로그램 코드로 처리 가능한 오류 (다른 자료형)
@@ -274,6 +254,27 @@ finally{                   // 최종 실행 코드
   System.out.println("예외 처리 종료");
 }
 ```
+<br>
+
+**시각 표현**
+* Date : 일회용 날짜 표현
+* Calender : 실시간 날짜 표현
+* Time : 시간 표현
+```
+* Date
+[getYear, getMonth, getHours, getMinutes, getSeconds, getTime]
+Date date = new Date();
+System.out.println(date);
+System.out.println(date.getDay());          // 일~토 (0~6)
+
+* Calender
+import java.util.Calender;
+Calender cal = new Calender();
+[YEAR, MONTH, HOUR, MINUTE, SECOND]
+System.out.println(cal.DAY_OF_MONTH+1);     // 0부터
+System.out.println(cal.DAY_OF_WEEK);        // 일~토 (1~7)
+```
+<br>
 
 **Collection : 자료 구조(Data Structure) 종류의 형태들을 자바 클래스로 구현한 모음집**
 * List : 순서가 있는 목록 (중복 가능)
