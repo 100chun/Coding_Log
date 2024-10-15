@@ -81,7 +81,7 @@ EndPoint          ServiceNumber          parameter                    return
 * DTO (Data Transfer Object) : 계층간의 데이터 교환 객체 (View - Controller)
   - Client와 직접 통신에 이용 (RequestDto + ResponseDto)
 ```
-DTO : 디폴트 생성자, 모든 인자 생성자, getter, setter, toString
+DTO : 디폴트 생성자 + 모든 인자 생성자 + getter + setter + toString
 public class BookDto {
     private long bookCode;
     private String bookName;
@@ -112,3 +112,4 @@ public class BookDto {
 
 Connection Pool
 Transaction
+refactor extract interface
