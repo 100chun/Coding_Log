@@ -88,11 +88,10 @@ public class BookDto {
     private String isbn;
     // 생성자
     public BookDto() {}              // 디폴트 생성자
-    public BookDto(long bookCode, String bookName, String isbn) {
+    public BookDto(long bookCode, String bookName) {
         super();
         this.bookCode = bookCode;    // 모든 인자 생성자
         this.bookName = bookName;
-        this.isbn = isbn;
     }
     // Getter, Setter
     public int getBookCode() {
@@ -101,10 +100,54 @@ public class BookDto {
     public void setBookCode(long bookCode) {
         this.bookCode = bookCode;
     }
+    public int getBookName() {
+        return bookName;
+    }
+    public void setBookName(long bookName) {
+        this.bookName = bookName;
+    }
+  //toString
+	@Override
+	  public String toString() {
+		    return "BookDto [bookCode=" + bookCode + ", bookName=" + bookName + "]";
+	}	
 }
 ```
 * DAO (Data Access Object) : DB 조회, 활용  (Model - DB)
   - DB에 Query를 통해 CRUD 적용
+```
+//DB CONN DATA
+private static String id = "root";
+private static String pw = "1234";
+private static String url = "jdbc:mysql://localhost:3306/tmpdb";
+	
+private static Connection conn;
+private static PreparedStatement pstmt;
+private static ResultSet rs;
+
+public static List<BookDto> selectAll() throws SQLException{
+    // DB 연결 드라이버 클래스 로드
+    Class.forName("com.mysql.cj.jdbc.Driver");	
+    System.out.println("Driver Loading Successed...");
+    // 커넥터에 서버 정보 저장
+    conn = DriverManager.getConnection(url, id, pw);
+    System.out.println("DB Connected...");
+
+    // 정보 저장용 list
+		List<BookDto> list = new ArrayList();					
+		// SQL Select 구문 실행
+		pstmt = conn.prepareStatement("select * from tbl_book");
+		// ResultSet 반환
+		rs = pstmt.executeQuery();
+
+BookDto dto = null;	
+		if(rs != null) {				// 자료가 있으면 실행
+			while(rs.next()) {			// 다음 행으로 이동
+				dto = new BookDto();
+				dto.setBookCode(rs.getLong("bookCode"));
+				dto.setBookName(rs.getString("bookName"));
+
+```
 * Service : 비지니스 로직 처리 (Controller - Model - DB)
 
 
