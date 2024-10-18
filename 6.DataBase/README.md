@@ -6,160 +6,73 @@ oracle DB 설치 (112? ver)
 좌 상단 화살표 (ctrl enter) : 라인 실행
 그 옆 : 전체 실행
 
+## Database (10/17 ~ )
+**환경 설정**
+1. Oracle DB 설치 (XE 11.2 ver)
+2. 좌상단 + 버튼 -> 계정 생성
+3. 생성 계정 우클 -> SQL 워크시트 열기
+* Ctrol + Enter : Line 실행
+* F5 : 스크립트 실행
+![1](https://github.com/user-attachments/assets/8f2a71f2-2b79-4067-b721-cbc30d5449ee)
+
+**Oracle 명령어**
 ```
-select * from USERTBL;
-select * from USERTBL where name = '김경호';   -- where 조건은 가급적 primary key
+* create : 구조 생성
+create table TEST_01 {
+    userid char(8) not null primary key,           // 기본키
+    name varchar(10) not null,                     // 빈 값 허용 X
+    age int;
+    foreign key (gender) references TEST(gender)   // 외래키 (열 명명) 참조 테이블 (열 정보) 
+}
+create table TEST_02 as selct * from TEST_01;      // TEST_01의 모든 요소를 가진 TEST_02 생성 (복사)
 
-select * from USERTBL where birthyear >= 1970 and height >= 182;
-select * from USERTBL where birthyear >= 1970 or height >= 182;
-
-select name, height from USERTBL where height between 180 and 183;
-
-select name, height from USERTBL where addr in('경남', '전남', '경북');   -- 포함
-
-select name, height from USERTBL where name like '김%';  -- keyword 검색, % (wildcard):길이 제한 없는 모든 문자 -> 김으로 시작만 하면 ok
-select name, height from USERTBL where name like '_재범'; -- _ : 길이 제한이 있는 모든 문자 -> 재범 앞에 한 자리인 모든 글자
-select name, height from USERTBL where name like '%경_';
-
-
-
-select * from BUYTBL where amount <= 5;
-select userid, prodname from BUYTBL where price between 50 and 500;
-select * from BUYTBL where amount >= 10 or price >= 100;
-select * from BUYTBL where userid like 'K%';
-select * from BUYTBL where groupname = '서적' or groupname = '전자';
-select * from BUYTBL where groupname in ('서적', '전자');
-select * from BUYTBL where prodname = '책' or userid like '%W';
-
-select * from USERTBL where height >= (select height from USERTBL where name = '김경호');   -- sub query
-select * from USERTBL where birthyear >= (select birthyear from USERTBL where name = '임재범');
-select * from USERTBL where height >= any (select height from USERTBL where addr = '경남');   -- return 값 여러개 -> any 붙여주기 -> 모두 적용 (or)
-select * from USERTBL where height >= all (select height from USERTBL where addr = '경남');   -- return 값 여러개 -> all 붙여주기 -> 공통 사항 적용 (and)
-
-select * from BUYTBL where price > (select price from BUYTBL where amount = 10);
-select * from BUYTBL where amount > any (select amount from BUYTBL where userid like 'K%');
-select * from BUYTBL where price > all (select price from BUYTBL where amount = 5);
+* alter : 구조 변경
+alter table TEST_01 add(address varchar(45));      // 열 추가
+alter table TEST_01 modify(address varchar(100));  // 열 변경
+alter table TEST_01 rename column address to addr; // 열 이름 변경
+alter table TEST_01 drop column address;           // 열 삭제
 
 
+* drop : 테이블 삭제
+drop table TEST_02;                                // 테이블 삭제
 
-create table TBL_BUY as select * from BUYTBL;   -- primary key는 복사 X
-desc TBL_BUY;
-select * from TBL_BUY;
-select * from all_constraints where table_name = 'BUYTBL';
+* insert : 행(열의 값) 삽입
+insert into TEST_01 values('LSG', '이승기', 35);  // 외래키 제외한 값 삽입
+insert into TEST_01 values('SSG', '신세경', 28);  // not null X -> null 가능
 
-create table TBL_BUY2 as select * from BUYTBL where 1=2;
-desc TBL_BUY2;
-select * from all_constraints where table_name = 'TBL_BUY2';
-select * from TBL_BUY2;
+* desc : 테이블 정보 조회
+desc TEST;
 
-insert into TBL_BUY2 select * from BUYTBL;
-select * from TBL_BUY2;
+* select : 행 정보 조회
+[<, >, =, and, or, between, in, like]
+select * from TEST_01;                             // TEST_01 테이블의 모든 행 조회
+select name, age from TEST_01;                     // name, age 열 값 조회
+select * from TEST_01 where age < 30;              // age의 값이 30 미만인 모든 행 조회
+select * from TEST_01 where age between 25 and 32; // age 값이 25 ~ 32
+select name from TEST_01 where name like '신%';    // 신으로 시작하는 모든 문자열
+select * from TEST_01 where name like '_승_';      // 2자리가 승이고 총 3자리인 문자열
+select * from TEST_01 where age in(20, 28);        // age 값이 20 또는 28
+select * from TEST_01 where userid = 'LSG' and age = 35;
+select * from TEST_01 where name like '%세_' or age = 28;
 
-select name, mdate from USERTBL order by mdate;     -- 정렬 (기본-오름차순)
-select name, mdate from USERTBL order by name desc;     -- 정렬 내림차순  
-select name, mdate, height from USERTBL order by height desc, name asc;     -- 키 기준 내림차순 -> 중복 요소는 이름 오름차순
-select distinct height from USERTBL order by height desc;
+* () : 서브 쿼리
+[any, all : 아무 값 만족 (or), 모든 값 만족 (and)]
+select name, addr from TEST_01                     // name이 신세경인 행의 나이 미만의 나이를 가지는 행
+where age < (select age from TEST_01 where name = '신세경');
+select * from TEST_01
+where age > any (select age from TEST_01 where userid = 'LSG')
+selct addr : from TEST_01
+where age = all (select age from TEST_01 where age >= 19);
 
-select * from USERTBL;
-select rownum as RN, USERTBL .* from USERTBL; -- as : 별칭 지정 -> 행 번호에 별칭 rn 지정 -> usertbl의 모든 요소에
-select * from (select rownum as RN, USERTBL .* from USERTBL) where RN >= 3;     -- 별칭 지정하면서 검색
+* order by : 정렬
+select name, age from TEST_01 order by name;     // name 순으로 오름차순 정렬 (default)
+select addr from TEST_01 order by userid desc;   // userid 순으로 내림차순 정렬
 
+* group by : 통합 정보
+select name, age from TEST_01 group by addr;    // addr로 통합된 name age 정보 확인
 
-
-select * from BUYTBL order by userid;
-select * from BUYTBL order by price desc;
-select * from BUYTBL order by amount, prodname desc;
-select distinct prodname from BUYTBL order by prodname;
-select distinct userid from BUYTBL;
-select * from BUYTBL where amount >= 3 order by prodname desc;
-create table CUsertbl as select * from USERTBL where addr in ('서울', '경기');
-select userid, amount from BUYTBL order by userid;
-
-select userid, sum(amount) as "구매총량" from BUYTBL group by userid;   -- userid 별 구매 총량 출력
-
-select * from BUYTBL;
-select groupname, sum(amount) as "구매총량" from BUYTBL group by groupname;       -- primary key는 제외해야함
-select producname, sum(amount) as "구매총량" from BUYTBL group by prodname;
-
-select userid, sum(amount * price) as "구매총액" from BUYTBL group by userid;
-select userid, avg(amount * price) as "구매평균" from BUYTBL group by userid;
- 
-select count(*) from BUYTBL;    -- null 제외하고 count
-select count(groupname) from BUYTBL;
-
-select avg(amount) from BUYTBL;
-select max(amount) from BUYTBL;
-select min(amount) from BUYTBL;
-
-select * from USERTBL where height = (select max(height) from USERTBL) or height = (select min(height) from USERTBL);
-select * from BUYTBL where amount > (select avg(amount) from BUYTBL);
-
-select trunc(avg(amount), 5) as "평균구매량" from BUYTBL;       -- 소숫점 자리수 제한
-
-select userid, sum(amount) from BUYTBL group by userid;
-select avg(height) from USERTBL;
-select userid, amount from BUYTBL where amount = (select max(amount) from BUYTBL) or amount = (select min(amount) from BUYTBL);
-select count(groupname) from BUYTBL;
-
-select userid, sum(price * amount) as "총구매액" from BUYTBL group by userid having sum(price * amount) >= 100 order by "총구매액" desc;   -- gourp by의 조건절 having
-
-
-select num, groupname, sum(price * amount) as "비용" from BUYTBL group by rollup(groupname, num);     -- groupname, num 기준으로 그룹화
-
-
-select userid, prodname, sum(price*amount) as "비용" from BUYTBL group by prodname, userid;   -- userid가 기본키라서 기준에 추가 필요
-select userid, prodname, sum(price * amount) as "비용" from BUYTBL group by rollup(prodname, userid) having sum(price * amount) >= 1000;
-select userid, prodname, price from BUYTBL where price = (select max(price) from BUYTBL) or price = (select min(price) from BUYTBL);
-select * from BUYTBL where groupname is null;
-select * from BUYTBL where groupname is not null;
-select * from BUYTBL where groupname != 'null';
-select sum(amount) from BUYTBL group by rollup(prodname);
-
-
-
-create table tmp(tidx number(10), name varchar(1000));
-desc tmp;
-
-create sequence tmp_seq START WITH 1
-increment by 1
-maxvalue 100
-cycle nocache;
-
-insert into tmp values(tmp_seq.nextval, 'a1');
-
-select * from tmp;
-
-
-
-create table TEST_01 (
-    userid char(10) primary key,
-    name char(10) not null
-);
-
---desc TEST_01;
---select * from all_constraints where table_name = 'TEST_01' and constraint_type = 'P';
---select acc.constraint_name, acc.constraint_type,
---from all_cons_columns acc
---join user_cons_columns ucc
---on acc.constaint_name = ucc.constaint_name;
-
-create table TEST_02 (
-    userid char(10),
-    name char(10) not null,
-    primary key(userid)
-);
-select * from all_constraints where table_name = 'TEST_02' and constraint_type = 'P';
-select * from all_cons_columns where table_name = 'TEST_02';
-
-alter table TEST_01 drop primary key;   -- alter : 구조 변경
-select * from all_constraints where table_name = 'TEST_01' and constraint_type = 'P';
-select * from all_cons_columns where table_name = 'TEST_01';
-
-alter table TEST_01 add constraint PK_USERID primary key(userid);
-
-
-
-
-
+* 계산
+[sum, avg, max, min, trunc, count]
+select gender, sum(age) from TEST_01 group by name;  // age의 합
 
 ```
