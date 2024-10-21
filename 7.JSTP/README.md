@@ -11,3 +11,12 @@
 
 * JSP (Java Server Pages) : 서버측에서 웹 페이지를 생성해 웹 브라우저로 전송 (동적 웹페이지 - 새로고침 시에 변화)
 * Servlet : 웹 요청과 응답의 흐름 단순화 (동적 웹페이지)
+
+
+
+
+<%> : Scriptlet
+<%!>
+<%=>
+request
+js <-> jsp
