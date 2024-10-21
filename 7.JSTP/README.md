@@ -7,6 +7,7 @@
 4. Eclipse -> Help -> Install New Software -> ```http://download.emmet.io/eclipse/updates/``` 입력 -> 모두 설치
 5. Install New Software -> ```https://github.com/angelozerr/tern.java/releases/tag/tern.java-1.2.1```의 파일 설치
 6. Dynamic Web Project 생성 -> 우클릭 -> Configure -> Convert to Tern Project
+* 저장 경로 : \workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\01_JSP\org\apache\jsp\
 
 * JSP (Java Server Pages) : 서버측에서 웹 페이지를 생성해 웹 브라우저로 전송 (동적 웹페이지 - 새로고침 시에 변화)
 * Servlet : 웹 요청과 응답의 흐름 단순화 (동적 웹페이지)
