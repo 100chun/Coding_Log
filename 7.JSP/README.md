@@ -1,6 +1,6 @@
 # JSP (10/18 ~
-**환경 설정**          
-[참고 자료](https://github.com/100chun/Coding_Log/tree/main/1.SW_Basic/02.MiddleWare_Basic)
+
+**환경 설정**  [참고 자료](https://github.com/100chun/Coding_Log/tree/main/1.SW_Basic/02.MiddleWare_Basic)
 1. Eclipse 설치 (Web, Java Developer ver)
 2. Tomcat 설치
 3. JDK 11.0.2 설치
@@ -40,21 +40,21 @@
             count();
     %>
     N : <%= n %>       // 표현식 -> N : 4
-    N : ${n}           // EL 표현식 -> N : 4
+    N = "${n}"         // EL 표현식 -> N : 4
 </body>
 </html>
 ```
 
 기본 내장 객체_Scope
 ----------------------------
-* Page -> Request -> Session -> Application
+* Page < Request < Session < Application
 * Page (pageContext) : 한 JSP 페이지 (한 페이지 내에서만 값 공유)
-* Request : HTTP가 요청하는 Parameter 값 추출
+* Request : HTTP가 요청하는 Parameter 값 추출 (Client -> Server)
   1. HTTP : Form에 Input (Parameter) 작성 -> action으로 JSP에 전달
   2. JSP : Request를 이용하여 Parameter 값 추출
-* Response : Parameter 값 HTTP에 재전달
+  - Forward : 지정 URL로 이동 (Parameter 추출 값 유지)
+* Response : Parameter 값 HTTP에 재전달 (Server -> Client)
   - Redirect : 지정 URL로 이동 (Parameter 추출 값 초기화)
-  - Forward : 지정 URL로 이동 (Parameter 추출 값 유지) - Response 객체 X
 * Session : 한 Browser (Chrome, Safari) 내어서만 값 공유
 * Application : 모든 값 공유
 
@@ -66,6 +66,7 @@
     <button>전송</button>
 </form>
 ```
+
 **JSP**
 ```
 <%
@@ -76,8 +77,10 @@
     String ps = request.getParameter("password");    // password Parameter의 값 추출
     String ser = request.getServerName();            // 사용자 명 추출 (localhost)
 
-    response.sendRedirect("02Scope.JSP");            // Response
-    
+    request.getRequestDispatcher("02Scope.jsp").forward(request, response);  // Forward : 전달하며 값 유지
+    response.sendRedirect("02Scope.jsp");                                    // Redirect : 이동하며 값 초기화    
 %>
-
 ```
+
+## Cookie
+---------
