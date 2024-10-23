@@ -9,15 +9,15 @@
 6. Dynamic Web Project 생성 -> 우클릭 -> Configure -> Convert to Tern Project
 * 저장 경로 : \workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\01_JSP\org\apache\jsp\
 
-**JSP (Java Server Pages) : 서버측에서 웹 페이지를 생성해 웹 브라우저로 전송 (동적 웹페이지 - 새로고침 시에 변화)**
+**JSP (Java Server Pages) : 서버측에서 웹 페이지를 생성해 웹 브라우저로 전송 (동적 웹페이지 - 새로고침 시에 변화)**         
 **Servlet : 웹 요청과 응답의 흐름 단순화 (동적 웹페이지)**
-
+* 라이브러리 <%@ %> : 지정 Library 사용
 * 선언문 <%! %> : 전체 영역에서 사용하는 멤버변수, 함수 선언 영역 (if, for 사용 불가)
 * 표현식 <%= %> : 선언된 변수, 함수를 FrontEnd로 전달하는 영역 (화면 출력)
   - EL 표현식 (Expression Language) ${}: 값 표현 방식
 * 스크립틀릿 (Scriptlet) <% %> : Java 코드 사용 영역
   - 함수 선언 불가 : 함수 내에서 함수 선언 불가
-* 라이브러리 <%@ %> : 지정 Library 사용
+
 ```
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  // 서버 전달 값
 <%@ import="java.util.*, java.sql.*" %>    // java.util, java.sql의 모든 Library 사용 가능
@@ -40,7 +40,7 @@
             count();
     %>
     N : <%= n %>       // 표현식 -> N : 4
-    N = "${n}"         // EL 표현식 -> N : 4
+    N : ${n}           // EL 표현식 -> N : 4
 </body>
 </html>
 ```
@@ -84,3 +84,13 @@
 
 ## Cookie
 ---------
+* Server -> Client
+* 웹 브라우저가 보관하고 있는 데이터, 웹 서버에 요청을 보낼 때 함께 전송 (ID 저장)
+* 문자열 데이터 저장 (최대 4Kbyte)
+* 최대 300개의 쿠키 저장 -> 초과 시에 미사용 쿠키부터 삭제
+* Domain당 20개까지 사용 가능
+```
+    Cookie cookie = new Cookie("Cok_Key", "Cok_Val");    // 쿠키 선언 : 키 - 값 형태
+    cookie.setMaxAge(30);                                // 유효 시간 30s -> 30초 뒤 새로고침 -> 값 사라짐
+    response.addCookie(cookie);                          // 쿠키 전달
+```
