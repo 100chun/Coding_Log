@@ -1,6 +1,4 @@
 10/8
-
-
 ## Lambda Stream
 ----------------
 * Lambda Expression : 매서드의 이름, 반환값을 생략해 간략화시킨 형태 (익명 함수)
@@ -23,7 +21,7 @@ list.stream().map(i -> i.getId())
 list.stream().reduce(0, (a,b) -> {a+b}) // 람다스트림 (0은 초기값)
 
 * sorted() : 정렬
-list.stream().map((a,b), -> {a - b})  // 람다스트림
+list.stream().map((a,b), -> {a - b})  	// 람다스트림
 ```
 
 * jdbc
@@ -38,33 +36,6 @@ socket, thread 가볍게, 디자인패턴
 * Server : 데이터를 송신자
 * Client : 데이터 수신자
 * Buffer : 데이터 이동에 필요한 바이트, 문자 변환자
-
-
-
-
-mvc
-view (요청) -> FrontController - execute -> BookController (파라미터 확인 -> 유효성 체크 -> 서비스 실행) -> BookService (요청자 확인 -> BookDao (tbl CRUD)
-FC _> SC -> Service -> Dao -> tbl
-
-EndPoint          ServiceNumber          parameter                    return
-/book                    add(0)          BookDto                    boolean
-/book                    Update(1)          BookDto                    boolean
-/book                    Delete(2)          BookDto                    boolean
-/book                    select(3)          BookDto                    bookDto
-/book                    selectAll(4)          x                     list<BookDto>   
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## MVC
