@@ -24,6 +24,8 @@ alter table TEST_01 modify(address varchar(100));  // 열 변경
 alter table TEST_01 rename column address to addr; // 열 이름 변경
 alter table TEST_01 drop column address;           // 열 삭제
 
+* constraint : 묶기
+constraint TEST_pk primary key(userid, name);       // 기본키 2개 지정
 
 * drop : 테이블 삭제
 drop table TEST_02;                                // 테이블 삭제
