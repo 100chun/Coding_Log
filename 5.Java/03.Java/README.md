@@ -1,6 +1,34 @@
 # (10/8 ~ 10/17)
-## MVC
+Thread, Interface
+## Swing
+**Swing : GUI 개발용 Library**
+
+## IO Stream
 ------
+* Socket : TCP/IP 기반 네트워크 통신에서 데이터 송수신의 마지막 접점
+* Server : 데이터를 송신자
+* Client : 데이터 수신자
+* Stream : 데이터가 전송되는 통로
+  * InputStream : 들어오는 정보
+  * OutputStream : 내보내는 정보
+* Buffer : 데이터 이동 향상에 필요한 바이트, 문자 변환자
+
+**Client**
+```
+Socket server = new Socket("192.168.5.50",7000);
+		InputStream in = server.getInputStream();
+		DataInputStream din = new DataInputStream(in);
+		String recv = din.readUTF();
+		System.out.println("서버 메세지 : " + recv);
+		
+		din.close();
+		in.close();
+		server.close();
+```
+
+**Server**
+
+## MVC
 **MVC (Model View Controller) : 사용자 인터페이스, 데이터 논리 제어에 사용되는 소프트웨어 디자인 패턴**
 * Model : 데이터, 비지니스 로직 관리
   - 데이터 저장 (요청에 따른 변경 후에 수신)
@@ -13,14 +41,16 @@
  
 * DTO (Data Transfer Object) : 계층간의 데이터 교환 객체 (View - Controller)
   - Client와 직접 통신에 이용 (RequestDto + ResponseDto)
-
+* DAO (Data Access Object) : DB 조회, 활용  (Model - DB)
+  - DB에 Query를 통해 CRUD 적용
 **Transaction (TX) : 오류 발생 시에 실행 전으로 되돌리는 작업**
 1. try, catch 구문 작성
 2. auto Commit 해제
 3. 본문 마지막에 commit
-4. 오류 발생 시에 rollback 
+4. 오류 발생 시에 rollback
+
+**DTO : 디폴트 생성자 + 모든 인자 생성자 + getter + setter + toString**
 ```
-DTO : 디폴트 생성자 + 모든 인자 생성자 + getter + setter + toString
 public class BookDto {
     private long bookCode;
     private String bookName;
@@ -51,23 +81,21 @@ public class BookDto {
     }	
 }
 ```
-* DAO (Data Access Object) : DB 조회, 활용  (Model - DB)
-  - DB에 Query를 통해 CRUD 적용
+
+**DAO**
 ```
-// SQL DB CONN DATA
 private static String url = "jdbc:mysql://localhost:3306/tmpdb";
 private static String id = "root";
 private static String pw = "1234";
-	
+
 private static Connection conn;
 private static PreparedStatement pstmt;
 private static ResultSet rs;		
 
 public static List<BookDto> selectAll() throws SQLException{
-    try {                               // 오류 발생 가능 부분 -> catch에서 처리 
-        Class.forName("com.mysql.cj.jdbc.Driver");			// DB 연결 드라이버 클래스 로드
-        conn = DriverManager.getConnection(url, id, pw);		// 커넥터에 서버 정보 저장
-
+    try {                               				// 오류 발생 가능 부분 -> catch에서 처리
+	Class.forName("com.mysql.cj.jdbc.Driver");			// DB 연결 드라이버 클래스 로드
+	conn = DriverManager.getConnection(url, id, pw);		// 커넥터에 서버 정보 저장
         conn.setAutoCommit(false);					// Auto Commit 해제 - TX
 
         // Insert
@@ -109,10 +137,13 @@ public static List<BookDto> selectAll() throws SQLException{
 	}
 }	
 ```
-Connection Pool
-refactor extract interface
-* swing
-* Socket : TCP/IP 기반 네트워크 통신에서 데이터 송수신의 마지막 접점
-* Server : 데이터를 송신자
-* Client : 데이터 수신자
-* Buffer : 데이터 이동에 필요한 바이트, 문자 변환자
+<br>
+
+**Refactoring : 코드의 품질 향상**
+* 변수 선언, 초기화 -> 변수 정의
+* if-else -> 삼항연산자
+* if-else -> Switch
+* 긴 메서드 -> 여러개의 잛은 메서드 = Extract
+* 중복 코드 -> 중복 제거, 메서드 분리
+* 디자인 패턴 이용
+* 알고리즘, 데이터 최적화
