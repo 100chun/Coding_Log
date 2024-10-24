@@ -1,28 +1,4 @@
 # (10/8 ~ 10/17)
-## Lambda Stream
-----------------
-* Lambda Expression : 매서드의 이름, 반환값을 생략해 간략화시킨 형태 (익명 함수)
-* Stream : 데이터 타입과 무관한 처리를 도와주는 API
-
-```
-* lambda
-int max (int a, int b) {  // 일반 함수식
-  return a + b;
-}
-(a, b) -> {a + b}         // 람다식
-
-* filter() : 조건문에 해당하는 데이터 추출
-list.stream().filter(i->i.getNumber() > 10)
-
-* map() : 각 요소에서 특정 속성 값만 추출
-list.stream().map(i -> i.getId())
-
-* reduce() : 계산식
-list.stream().reduce(0, (a,b) -> {a+b}) // 람다스트림 (0은 초기값)
-
-* sorted() : 정렬
-list.stream().map((a,b), -> {a - b})  	// 람다스트림
-```
 ## MVC
 ------
 **MVC (Model View Controller) : 사용자 인터페이스, 데이터 논리 제어에 사용되는 소프트웨어 디자인 패턴**
