@@ -255,6 +255,11 @@ finally{                   // 최종 실행 코드
 }
 ```
 <br>
+**Collection : 자료 구조(Data Structure) 종류의 형태들을 자바 클래스로 구현한 모음집**
+* List : 순서가 있는 목록 (중복 가능)
+* Set : 순서가 없는 목록 (중복 불가)
+* Map : 키-값으로 이루어진 순서가 없는 목록 (값만 중복 가능)
+
 
 **시각 표현**
 * Date : 일회용 날짜 표현
@@ -276,7 +281,27 @@ System.out.println(cal.DAY_OF_WEEK);        // 일~토 (1~7)
 ```
 <br>
 
-**Collection : 자료 구조(Data Structure) 종류의 형태들을 자바 클래스로 구현한 모음집**
-* List : 순서가 있는 목록 (중복 가능)
-* Set : 순서가 없는 목록 (중복 불가)
-* Map : 키-값으로 이루어진 순서가 없는 목록 (값만 중복 가능)
+## Lambda Stream
+----------------
+* Lambda Expression : 매서드의 이름, 반환값을 생략해 간략화시킨 형태 (익명 함수)
+* Stream : 데이터 타입과 무관한 처리를 도와주는 API
+
+```
+* lambda
+int max (int a, int b) {  // 일반 함수식
+  return a + b;
+}
+(a, b) -> {a + b}         // 람다식
+
+* filter() : 조건문에 해당하는 데이터 추출
+list.stream().filter(i->i.getNumber() > 10)
+
+* map() : 각 요소에서 특정 속성 값만 추출
+list.stream().map(i -> i.getId())
+
+* reduce() : 계산식
+list.stream().reduce(0, (a,b) -> {a+b}) // 람다스트림 (0은 초기값)
+
+* sorted() : 정렬
+list.stream().map((a,b), -> {a - b})  	// 람다스트림
+```
