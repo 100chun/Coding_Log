@@ -1,0 +1,138 @@
+package Ch00;
+
+import java.util.Scanner;
+
+public class View {
+//	private FrontController controller;
+//	View() throws Exception {controller = new FrontController();}
+	
+	private static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {	
+		while (true) {
+			System.out.println("사용자를 선택해주세요");
+			System.out.println("1. 교사");
+			System.out.println("2. 학생");
+			System.out.println("3. 종료");
+			System.out.print("번호 : ");
+			
+			int num = sc.nextInt();
+			switch (num) {
+			case 1:
+				teacherMenu();
+				break;
+			case 2:
+				stdMenu();
+				break;
+			case 3:
+				System.out.println("프로그램을 종료합니다.");
+				System.exit(-1);
+			}		
+		}
+	}
+	
+	// 교사
+	public static void teacherMenu() {	
+		while (true) {
+			System.out.println("--------------------");
+			System.out.println("사용자 : 교사");
+			System.out.println("1. 전체 성적 조회");
+			System.out.println("2. 학생 성적 조회");
+			System.out.println("3. 과목 성적 조회");
+			System.out.println("4. 성적 입력");
+			System.out.println("5. 성적 수정");
+			System.out.println("6. 성적 삭제");
+			System.out.println("7. 종료");
+			System.out.print("번호 : ");
+			int num = sc.nextInt();
+			
+			switch (num) {
+			case 1:
+				break;
+			case 2:
+				stdSelect();
+				break;
+			case 3:
+				sbjSelect();
+				break;
+			case 4:
+				insert();
+				break;
+			case 5:
+				update();
+				break;
+			case 6:
+				delete();
+				break;
+			case 7:
+				System.out.println("프로그램을 종료합니다.");
+				System.exit(-1);
+			}
+		}
+	}	
+	// 학생
+	public static void stdMenu() {	
+		while (true) {
+			System.out.println("--------------------");
+			System.out.println("사용자 : 학생");
+			System.out.println("1. 전체 성적 조회");
+			System.out.println("2. 학생 성적 조회");
+			System.out.println("3. 과목 성적 조회");
+			System.out.println("4. 종료");
+			System.out.print("번호 : ");
+			int num = sc.nextInt();
+			
+			switch (num) {
+			case 1:
+				break;
+			case 2:
+				stdSelect();
+				break;
+			case 3:
+				sbjSelect();
+				break;
+			case 4:
+				System.out.println("프로그램을 종료합니다.");
+				System.exit(-1);
+			}
+		}
+	}
+	
+	// CRUD 정보 -> Controller 호출!
+	public static void stdSelect() {
+		System.out.println("검색할 학생 이름을 입력하세요.");
+		System.out.print("이름 : ");
+		String std = sc.next();
+	}
+	public static void sbjSelect() {
+		System.out.println("검색할 과목 이름을 입력하세요.");
+		System.out.print("과목 : ");
+		String sbj = sc.next();
+	}
+	
+	public static void insert() {
+		System.out.println("추가할 학생, 과목, 성적를 입력하세요.");
+		System.out.print("이름 : ");
+		String std = sc.next();
+		System.out.print("과목 : ");
+		String sbj = sc.next();
+		System.out.print("성적 : ");
+		int grade = sc.nextInt();
+	}
+	public static void update() {
+		System.out.println("수정할 학생 이름, 과목, 성적을 입력하세요.");
+		System.out.print("이름 : ");
+		String std = sc.next();
+		System.out.print("과목 : ");
+		String sbj = sc.next();
+		System.out.print("성적 : ");
+		int grade = sc.nextInt();
+	}
+	public static void delete() {
+		System.out.println("삭제할 학생, 과목를 입력하세요.");
+		System.out.print("이름 : ");
+		String std = sc.next();
+		System.out.print("과목 : ");
+		String sbj = sc.next();
+	}
+}
