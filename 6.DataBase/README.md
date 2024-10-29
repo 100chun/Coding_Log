@@ -1,5 +1,5 @@
 # Database (10/17 ~ 10/18)
-**환경 설정**
+**Oracle 환경 설정**
 1. Oracle DB 설치 (XE 11.2 ver)
 2. 좌상단 + 버튼 -> 계정 생성
 3. 생성 계정 우클 -> SQL 워크시트 열기
@@ -7,7 +7,17 @@
 * F5 : 스크립트 실행
 ![1](https://github.com/user-attachments/assets/8f2a71f2-2b79-4067-b721-cbc30d5449ee)
 
-**Oracle 명령어**
+**CMD 환경 설정**
+1. cmd 실행
+2. sqlplus 입력
+3. user-name : system
+4. password : 1234
+5. 명령어 실행
+6. commit; 입력 <- 자동 저장 X
+**Oracle <-> CMD 연동됨**
+
+## Oracle 명령어
+----------------
 ```
 * create : 구조 생성
 create table TEST_01 {
@@ -68,5 +78,7 @@ select name, age from TEST_01 group by addr;    // addr로 통합된 name age �
 * 계산
 [sum, avg, max, min, trunc, count]
 select gender, sum(age) from TEST_01 group by name;  // age의 합
-
 ```
+
+## MVC
+-----
