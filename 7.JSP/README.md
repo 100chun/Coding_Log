@@ -149,7 +149,76 @@ public class ServletTest extends HttpServlet {
 </body>
 ```
 
-Filter
-------
+### Filter
 **Filter : 요청, 반환 사이에서 정보 처리**
-* ServletReq -> Filter1 -> Filter2 -> ServletResp
+* ClientReq -> Filter -> ServletReq -> ServletResp -> Filter -> ClientResp
+* Servlet 처리 전, 후에 작업 추가 - Servlet에 따라 선택적 실행
+```
+@WebFilter("/.do")    // .do 형태의 servlet에 모두 적용 (/* : 모든 servlet)
+public class filter implents Filter {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {}
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws Exception {
+        req.setCharacterEncoding("UTF-8");                   // request에서 적용
+        chain.doFilter(req, resp);      // 다른 filter로 전달 = filter1 -> filter2 -> filter2 -> filter1
+        resp.setContentType("text/html;" charset=UTF-8");    // response에서 적용
+}
+```
+
+### Listner
+**Listner : 특정 이벤트가 발생하면 실행**
+```
+@WebListner()
+public class ServletContextListner implements ServletContextListner {
+    @Override
+    public void contextInitia   
+}
+```
+
+### web.xml
+**Web Application Deployment Descriptor : Servlet, Filter의 URL 정보 처리**
+* mapping -> 파일에 annotation 추가 불필요 (@WebServlet(), @WebFilter())
+```
+* Default Servlet : Servlet Mapping 처리가 되지 않은 Servlet 처리
+<web-app>
+    <servlet>
+        <servlet-name>default</servlet-name>
+        <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>listings</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resources/*</url-pattern>    <!-- 정적 자원 요청에 대한 URL 패턴 지정 -->
+    </servlet-mapping>
+
+<!-- Servlet -->
+    <servlet>
+        <servlet-name>test.do</servlet-name>      // == @WebServlet(/test.do)
+      	<servlet-class>Servlet.Servlet</servlet-class>  // class 경로
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>test.do</servlet-name>     // == @WebServlet(/test.do) 
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+<!-- Filter -->
+    <filter>
+      	<filter-name>UTF8</filter-name>
+      	<filter-class>Filter.UTF8_Encoding</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UTF8</filter-name>
+      	<url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
+```
