@@ -45,8 +45,7 @@
 </html>
 ```
 
-기본 내장 객체_Scope
-----------------------------
+### 기본 내장 객체_Scope
 * Page < Request < Session < Application
 * Page (pageContext) : 한 JSP 페이지 (한 페이지 내에서만 값 공유)
 * Request : HTTP가 요청하는 Parameter 값 추출 (Client -> Server)
@@ -82,8 +81,7 @@
 %>
 ```
 
-## Cookie
----------
+### Cookie
 * Server -> Client
 * 웹 브라우저가 보관하고 있는 데이터, 웹 서버에 요청을 보낼 때 함께 전송 (ID 저장)
 * 문자열 데이터 저장 (최대 4Kbyte)
@@ -94,3 +92,64 @@
     cookie.setMaxAge(30);                                // 유효 시간 30s -> 30초 뒤 새로고침 -> 값 사라짐
     response.addCookie(cookie);                          // 쿠키 전달
 ```
+
+# Servlet
+---------
+**Servlet : 클라이언트의 요청을 처리하고 그 결과를 반환하는 기술**
+*  Cient -> HttpRequest -> WAS(tomcat) -> ServletGet -> ServletPost -> HttpResponse -> Client
+* 동적 웹페이지에서 수행
+* HTML의 요청에 응답
+
+**JSP1 - 정보 입력**
+```
+<body>  <!-- 정보 처리 Servlet 경로 -->
+    <form action="${pageContext.request.contextPath}/servlet1.do" method="post">
+        <input type="text" name="userid" /> <br>
+        <input type="password" name="password" /> <br>
+        <input type="submit" value="회원가입" /> <br>
+    </form>
+</body>
+```
+
+**Servlet1 - 정보 처리**
+```
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/servlet1.do")                    // 서블릿 이름 명명 = /Test
+public class ServletTest extends HttpServlet {
+    @Override      // 초기화 함수
+    public void init() thrwos ServletException {}
+    @Override      // 정보를 받아올 JSP 위치 - Forward로 전달
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        req.getRequestDispatcher("/WEB-INF/Test.jsp").forward(req, resp);
+    }
+    @Override      // 정보를 반환할 Servlet or JSP 위치
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        String id = req.getParameter("userid");        // JSP에서 가져온 값
+        Stirng pw = req.getParameter("password");
+        HttpSession session = req.getSession();        // Servlet 내장 객체 - 정보 저장
+        session.setAttribute("userid", id);            // session에 Key, Value 형태로 정보 저장
+        session.setAttribute("password", pw);
+        resp.sendRedirect(req.getContextPath() + "/JSP2.jsp);    // 반환할 경로 (/main.do로 명명된 Servlet)
+    }
+    @Override    // 삭제 함수
+    public void destroy() {}
+}
+```
+
+**JSP2 - 반환 정보 출력**
+```
+<body>
+    ID : ${userid} <br> 
+    PW : ${password} <br>
+</body>
+```
+
+Filter
+------
+**Filter : 요청, 반환 사이에서 정보 처리**
+* ServletReq -> Filter1 -> Filter2 -> ServletResp
