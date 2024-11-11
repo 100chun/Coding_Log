@@ -1,4 +1,4 @@
-# JSP (10/18 ~
+# JSP (10/18 ~ 11/07)
 
 **환경 설정**  [참고 자료](https://github.com/100chun/Coding_Log/tree/main/1.SW_Basic/02.MiddleWare_Basic)
 1. Eclipse 설치 (Web, Java Developer ver)
