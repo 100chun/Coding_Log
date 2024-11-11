@@ -29,7 +29,7 @@
 [Java_Deep](5.Java/02.Java_Deep/README.md)        
 [Java](5.Java/03.Java/README.md)                 
 
-**06.DataBase (10/1 ~10/18)**             
+**06.DataBase (10/17 ~10/18)**             
 [06.SQL활용.pdf](https://github.com/user-attachments/files/17694021/06.SQL.pdf)                     
 [DataBase](6.DataBase/README.md)                
 
