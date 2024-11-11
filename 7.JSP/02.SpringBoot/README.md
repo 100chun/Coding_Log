@@ -1,26 +1,26 @@
 # SpringBoot (11/08 ~ )
 **환경 설정**
-- SpringTool
+- SpringFramework : 자바 웹 애플리케이션 개발을 위한 경량형 오픈소스 프레임 워크
 - lombok : 기계적인 코드 작성을 자동화하여 코드 다이어트를 해주는 Java 라이브러리
 1. JDK 11.0.8 설치
 2. Tomcat9 설치
 3. SpringTool Eclpise Window (3.9.18 - win32-x86_64.zip) 설치
-```https://github.com/spring-attic/toolsuite-distribution/wiki/Spring-Tool-Suite-3```
-  * C드라이브에 파일 압축 해제
-  * STS.init 파일에 openFile 하단에 JDK 파일 경로, lombok 추가
-  ```
+   * ```https://github.com/spring-attic/toolsuite-distribution/wiki/Spring-Tool-Suite-3```
+   * C드라이브에 파일 압축 해제
+   * STS.init 파일에 openFile 하단에 JDK 파일 경로, lombok 추가
+   ```
    -vm
     C:\Program Files\Java\jdk-11.0.0.2\bin\javaw.exe
    -javaagent:lombok.jar
-  ```
-  * ```https://nirsa.tistory.com/405``` 파일 모두 다운로드
-    1. workspace 경로 -> .metadata\.plugins\org.springsource.ide.eclipse.commons.content.core에 https-content.xml 추가
-    2. workspace 경로 -> .metadata\.sts\content에 org.springframework.templates.mvc-3.2.2 압축 해제 파일 추가
+   ```
+   * ```https://nirsa.tistory.com/405``` 파일 모두 다운로드
+     1. workspace 경로 -> .metadata\.plugins\org.springsource.ide.eclipse.commons.content.core에 https-content.xml 추가
+     2. workspace 경로 -> .metadata\.sts\content에 org.springframework.templates.mvc-3.2.2 압축 해제 파일 추가
 4. STS 실행
-  * Window -> Preferences -> Workspace, Files -> Encoding 언어 UTF-8 설정
-  * Server -> Tomcat9 추가 -> port number 할당
-  * Spring Legacy Project -> Spring MVC Project 선택 -> Configure templates -> spring-defaults 설치
-  * pom.xml, web.xml 수정
+   * Window -> Preferences -> Workspace, Files -> Encoding 언어 UTF-8 설정
+   * Server -> Tomcat9 추가 -> port number 할당
+   * Spring Legacy Project -> Spring MVC Project 선택 -> Configure templates -> spring-defaults 설치
+   * pom.xml, web.xml 수정
 5. Project -> Run As -> Maven ilean -> Maven install
 6. Project -> Maven -> Update Project -> Run As Apache Tomcat
 
