@@ -22,7 +22,7 @@
 [CSS](4.Screen_IMPL/02.CSS/README.md)         
 [JS](4.Screen_IMPL/04.JavaScript/README.md)               
 
-**05.Java (9/7 ~ )**                  
+**05.Java (9/7 ~ 10/17)**                  
 [05.프로그래밍 언어 활용.pdf](https://github.com/user-attachments/files/17124098/05.pdf)                   
 [Java_Log](https://github.com/100chun/05.Java)                  
 [Java](5.Java/README.md)                   
