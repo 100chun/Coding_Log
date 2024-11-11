@@ -1,4 +1,4 @@
-[07.화면설계.pdf](https://github.com/user-attachments/files/17694027/07.pdf)# 정보처리 산업기사B 수업 내용
+# 정보처리 산업기사B 수업 내용
 
 **01.SW_Basic (7/29 ~ 8/6)**  
 [01.응용 SW 기초 활용.pdf](https://github.com/user-attachments/files/16576858/SW.pdf)            
