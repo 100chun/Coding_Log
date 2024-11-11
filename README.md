@@ -1,4 +1,4 @@
-# 정보처리 산업기사B 수업 내용
+[07.화면설계.pdf](https://github.com/user-attachments/files/17694027/07.pdf)# 정보처리 산업기사B 수업 내용
 
 **01.SW_Basic (7/29 ~ 8/6)**  
 [01.응용 SW 기초 활용.pdf](https://github.com/user-attachments/files/16576858/SW.pdf)            
@@ -29,7 +29,13 @@
 [Java_Deep](5.Java/02.Java_Deep/README.md)        
 [Java](5.Java/03.Java/README.md)                 
 
-**06.DataBase (10/16 ~10/17)**
-[SQL활용](https://github.com/user-attachments/files/17694021/06.SQL.pdf)
+**06.DataBase (10/1 ~10/18)**
+[06.SQL활용.pdf](https://github.com/user-attachments/files/17694021/06.SQL.pdf)
 [DataBase](6.DataBase/README.md)
+
+**07.JSP (10/18 ~ )**
+[07.화면설계.pdf](https://github.com/user-attachments/files/17694029/07.pdf)
+[Jsp_Basic](7.JSP/01.Jsp_Basic/README.md)
+[SpringBoot](7.JSP/02.SpringBoot/README.md)
+
 
