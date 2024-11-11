@@ -30,12 +30,12 @@
 [Java](5.Java/03.Java/README.md)                 
 
 **06.DataBase (10/1 ~10/18)**
-[06.SQL활용.pdf](https://github.com/user-attachments/files/17694021/06.SQL.pdf)
-[DataBase](6.DataBase/README.md)
+[06.SQL활용.pdf](https://github.com/user-attachments/files/17694021/06.SQL.pdf)                     
+[DataBase](6.DataBase/README.md)                
 
 **07.JSP (10/18 ~ )**
-[07.화면설계.pdf](https://github.com/user-attachments/files/17694029/07.pdf)
-[Jsp_Basic](7.JSP/01.Jsp_Basic/README.md)
-[SpringBoot](7.JSP/02.SpringBoot/README.md)
+[07.화면설계.pdf](https://github.com/user-attachments/files/17694029/07.pdf)              
+[Jsp_Basic](7.JSP/01.Jsp_Basic/README.md)              
+[SpringBoot](7.JSP/02.SpringBoot/README.md)             
 
 
