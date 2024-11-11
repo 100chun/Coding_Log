@@ -22,7 +22,14 @@
 [CSS](4.Screen_IMPL/02.CSS/README.md)         
 [JS](4.Screen_IMPL/04.JavaScript/README.md)               
 
-**05.Java (9/7 ~ 10/17)**                  
+**05.Java (9/7 ~ 10/16)**                  
 [05.프로그래밍 언어 활용.pdf](https://github.com/user-attachments/files/17124098/05.pdf)                   
 [Java_Log](https://github.com/100chun/05.Java)                  
-[Java](5.Java/README.md)                   
+[Java_Basic](5.Java/01.Java_Basic/README.md)    
+[Java_Deep](5.Java/02.Java_Deep/README.md)        
+[Java](5.Java/03.Java/README.md)                 
+
+**06.DataBase (10/16 ~10/17)**
+[SQL활용](https://github.com/user-attachments/files/17694021/06.SQL.pdf)
+[DataBase](6.DataBase/README.md)
+
