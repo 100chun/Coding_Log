@@ -1,5 +1,5 @@
 # SpringBoot (11/08 ~ )
-**환경 설정**
+**환경 설정** [참고 자료](https://github.com/100chun/Coding_Log/tree/main/1.SW_Basic/02.MiddleWare_Basic)
 - SpringFramework : 자바 웹 애플리케이션 개발을 위한 경량형 오픈소스 프레임 워크
 - lombok : 기계적인 코드 작성을 자동화하여 코드 다이어트를 해주는 Java 라이브러리
 1. JDK 11.0.8 설치
