@@ -21,7 +21,7 @@
    * Server -> Tomcat9 추가 -> port number 할당
    * Spring Legacy Project -> Spring MVC Project 선택 -> Configure templates -> spring-defaults 설치
    * pom.xml, web.xml 수정
-5. Project -> Run As -> Maven ilean -> Maven install
+5. Project -> Run As -> Maven clean -> Maven install
 6. Project -> Maven -> Update Project -> Run As Apache Tomcat
 
 **src -> pom.xml**
