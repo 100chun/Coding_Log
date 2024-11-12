@@ -24,7 +24,7 @@
 5. Project -> Run As -> Maven ilean -> Maven install
 6. Project -> Maven -> Update Project -> Run As Apache Tomcat
 
-**src -> pon.xml**
+**src -> pom.xml**
 ```
 <properties>
   <!-- 자바 버전 변경 -->
@@ -82,8 +82,6 @@
       </configuration>
    </plugin>
 </plugins>
-
-
  ```
 
 **src -> main -> webapp -> WEB-INF -> web.xml**
@@ -108,3 +106,25 @@
 </filter-mapping>  
 ```
 
+## Spring Basic
+**lombok Annotation**
+* @Data : Getter + Setter + RequiredArgsConstructor + ToString
+* @NoArgsConstructor : 기본 생성자
+* @AllArgsConstructor : 모든 인자 생성자
+
+
+
+* Mapping <- Servlet
+* 
+```
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Example {
+   private int id;
+   private String password;
+}
+
+```
+@GetMapping("/ex")
+@PostMapping("/ex")
