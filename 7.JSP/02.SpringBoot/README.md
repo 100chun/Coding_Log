@@ -128,3 +128,10 @@ public class Example {
 ```
 @GetMapping("/ex")
 @PostMapping("/ex")
+
+
+servlet context
+root context
+
+sqlmapper
+orm
