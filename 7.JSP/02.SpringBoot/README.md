@@ -134,4 +134,8 @@ servlet context
 root context
 
 sqlmapper
+//Annotaion 을 이용한 Mapping
+	@Insert(value="insert into tbl_memo values(null,#{text},#{writer},now())")
+	public int Insert(MemoDto memoDto);
+ 
 orm
