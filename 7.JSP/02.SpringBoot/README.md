@@ -139,3 +139,7 @@ sqlmapper
 	public int Insert(MemoDto memoDto);
  
 orm
+
+
+tx : rollbackfor____
+aop?
