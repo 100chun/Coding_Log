@@ -107,6 +107,36 @@
 ```
 
 ## Spring Basic
+* Spring Bean : Spring 프로그램이 관리하는 자바 객체 (외부 라이브러리)
+* Context : Bean이 담긴 컨테이너
+  * web.xml : servlet, root eontext의 경로 설정
+  * servlet-context.xml (공유 X) : View, url-controller 요청과 관련된 Bean 설정
+  * root-context.xml (공유 O) : Servoce, Dao, DB 같은 백엔드 Bean 설정
+
+
+**Annotation : 실행 시에 특정 기능을 하는 주석**
+* @ComponentScan : Bean을 탐색해 content.xml에 자동 추가
+* @Component : 직접 작성한 class를 Bean으로 등록
+* @Bean : 외부 라이브러리 클래스를 Bean으로 등록
+* @Autowired : 속성 생성자에 자동 Bean 주입 (Dao, Service)
+* @Configuration :  @Autowired로 호출 가능한 Config 파일
+* @Service : MVC Service 등록
+* @Controller : MVC Controller 등록 (View Return)
+* @RestController : View에 응답하지 않는 Controller 등록 (method Return)
+* @RequestMapping : 처리 method, 응답 방식 등록
+
+```
+* @ComponentScan : Bean을 탐색해 content.xml에 자동 추가
+<context:component-scan base-package="com.example.ex01.controller" />
+
+* @Component : 직접 작성한 class를 Bean으로 등록
+
+```
+
+
+
+
+
 **lombok Annotation**
 * @Data : Getter + Setter + RequiredArgsConstructor + ToString
 * @NoArgsConstructor : 기본 생성자
@@ -132,6 +162,7 @@ public class Example {
 
 servlet context
 root context
+pom
 
 sqlmapper
 //Annotaion 을 이용한 Mapping
@@ -143,3 +174,5 @@ orm
 
 tx : rollbackfor____
 aop?
+
+crud axios
