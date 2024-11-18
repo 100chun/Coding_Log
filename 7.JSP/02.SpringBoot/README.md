@@ -133,10 +133,6 @@
 
 ```
 
-
-
-
-
 **lombok Annotation**
 * @Data : Getter + Setter + RequiredArgsConstructor + ToString
 * @NoArgsConstructor : 기본 생성자
@@ -159,10 +155,6 @@ public class Example {
 @GetMapping("/ex")
 @PostMapping("/ex")
 
-
-servlet context
-root context
-pom
 
 sqlmapper
 //Annotaion 을 이용한 Mapping
