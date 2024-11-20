@@ -25,10 +25,10 @@
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         //JSP
         implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // 추가
-  	//JSTL
-  	implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
-  	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
-  	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
+  	    //JSTL
+  	    implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
+  	    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
+  	    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
     }
     ```
 9. src -> main -> resource -> application.properties
