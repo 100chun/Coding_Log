@@ -125,23 +125,10 @@
 * @RestController : View에 응답하지 않는 Controller 등록 (method Return)
 * @RequestMapping : 처리 method, 응답 방식 등록
 
-```
-* @ComponentScan : Bean을 탐색해 content.xml에 자동 추가
-<context:component-scan base-package="com.example.ex01.controller" />
-
-* @Component : 직접 작성한 class를 Bean으로 등록
-
-```
-
 **lombok Annotation**
 * @Data : Getter + Setter + RequiredArgsConstructor + ToString
 * @NoArgsConstructor : 기본 생성자
 * @AllArgsConstructor : 모든 인자 생성자
-
-
-
-* Mapping <- Servlet
-* 
 ```
 @Data
 @NoArgsConstructor
@@ -152,8 +139,55 @@ public class Example {
 }
 
 ```
-@GetMapping("/ex")
-@PostMapping("/ex")
+
+## Mapping
+
+REST
+----
+* Representational State Transfer : Resource (URI) + Verb (HTTP Method) + Representations
+* Mapping : URI로의 요청을 특정 함수와 연결하기 위해 사용
+**Controller + HTTP Method**
+```
+@RequestMapping("/home") 	// 공통 경로
+public class HomeController {
+
+* GET : 서버의 데이터 획득 (Select)
+@GetMapping("/getHome")		// URI
+private void GetHome() {	// Verb
+    log.info("GET");		// Representations
+}
+
+* POST : 서버에 데이터 추가 (Insert)
+@PostMapping("/postHome")
+private void PostHome {}
+
+* PUT : 서버의 데이터 수정 (Update - 전체)
+@PutMapping("/putHome")
+private void PutHome {}
+
+* Patch : 서버의 데이터 수정 (Update - 일부)
+@PatchMapping("/patchHome")
+private void PatchHome {}
+
+* Delete : 서버의 데이터 삭제 (Delete)
+@DeleteMapping("/deleteHome")
+private void DeleteHome {}
+```
+
+SQL Mapper (MyBatis)
+-------------------
+* MyBatis Framework : JDBC 기능, 자바 객체와 SQL 매핑기능 제공
+```
+@Mapper		// MyBatis Mapper Annotation
+public interface HomeMapper {
+    // 1. @ 활용 (#{} 내부의 값을 함수를 통해서 받아옴)
+    @Insert(value="insert into tbl_home values(#{id}, #{pw}, #{name})")
+    public int Insert(HomeDto dto);
+    @Update(value=)
+    @Select()
+    @Delete()
+}
+```
 
 
 sqlmapper
