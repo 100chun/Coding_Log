@@ -177,17 +177,28 @@ private void DeleteHome {}
 SQL Mapper (MyBatis)
 -------------------
 * MyBatis Framework : JDBC 기능, 자바 객체와 SQL 매핑기능 제공
+
+1. Mapper.java + Dao
+**HomeMapper.java**
 ```
 @Mapper		// MyBatis Mapper Annotation
 public interface HomeMapper {
-    // 1. @ 활용 (#{} 내부의 값을 함수를 통해서 받아옴)
     @Insert(value="insert into tbl_home values(#{id}, #{pw}, #{name})")
     public int Insert(HomeDto dto);
     @Update(value=)
     @Select()
     @Delete()
+
 }
 ```
+
+2. Mapper.xml + Mapper.java + Dao
+
+
+
+
+
+
 
 
 sqlmapper
