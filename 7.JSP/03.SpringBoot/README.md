@@ -33,7 +33,7 @@
     ```
 9. src -> main -> resource -> application.properties
    ```
-   spring.application.name=demo
+    spring.application.name=demo
     #Tomcat Server Port Setting
     server.port=8080
     #UTF-8 Setting
