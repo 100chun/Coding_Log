@@ -18,13 +18,13 @@
 8. build-gradle (== pom.xml)
     ```
     dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-	  compileOnly 'org.projectlombok:lombok'
-  	annotationProcessor 'org.projectlombok:lombok'
-  	//providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-  	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  	//JSP
-  	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // 추가
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        //providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        //JSP
+        implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // 추가
   	//JSTL
   	implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
   	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
