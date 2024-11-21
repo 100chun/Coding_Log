@@ -142,8 +142,7 @@ public class Example {
 
 ## Mapping
 
-REST
-----
+#### REST
 * Representational State Transfer : Resource (URI) + Verb (HTTP Method) + Representations
 * Mapping : URI로의 요청을 특정 함수와 연결하기 위해 사용
 **Controller + HTTP Method**
@@ -193,9 +192,18 @@ public interface HomeMapper {
 ```
 
 2. Mapper.xml + Mapper.java + Dao
+```
+<update id="Update_xml" parameterType="com.example.ex01.domain.dto.MemoDto">
+		update tbl_memo set text=#{text}, writer=#{writer}, where id=#{id}
+	</update>
 
+public int Update_xml(MemoDto memoDto);
+```
 
-
+public int insert(MemoDto dto) throws SQLException {
+		sqlSession.insert(namespace + "Insert", dto);	// namespace경로 안의 Insert 함수에 dto 넣기
+		return dto.getId();
+	}
 
 
 
@@ -211,5 +219,12 @@ orm
 
 tx : rollbackfor____
 aop?
-
+file, up, download (fiolder create)
 crud axios
+intercreptor
+
+listener
+handling
+schedule
+security
+동기 비동기
