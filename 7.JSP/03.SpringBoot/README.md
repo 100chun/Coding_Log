@@ -42,9 +42,26 @@
    spring.servlet.filter.encoding.init-param.encoding=UTF-8
    spring.servlet.filter.encoding.init-param.forceEncoding=true
    spring.servlet.filter.encoding.url-pattern=/*
+    ```
+
    # JSP Setting
+   
    spring.mvc.view.prefix=/WEB-INF/views/
    spring.mvc.view.suffix=.jsp
    # JSP Auto-Configuration
    server.servlet.jsp.init-parameters.development=true
    ```
+
+
+
+
+
+
+
+
+RESULTFUL API
+ 공공데이터 포털 자료 이용법
+   thymeleaf
+    leaflet
+   map
+   -marker, popup 
