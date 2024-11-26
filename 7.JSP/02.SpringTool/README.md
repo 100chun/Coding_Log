@@ -228,9 +228,9 @@ public boolean memoAddTx(MemoDto memoDto) throws Exception {
 
 
 
-
-
-tx : rollbackfor____
+**AOP**
+- Aspect-Oriented Programming : 관점 지향 프로그래밍
+- 프로그램을 핵심, 부가적 기능으로 나누어 모듈화
 aop?
 file, up, download (fiolder create)
 crud axios
