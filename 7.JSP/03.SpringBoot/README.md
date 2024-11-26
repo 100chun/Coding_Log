@@ -44,18 +44,6 @@
    spring.servlet.filter.encoding.url-pattern=/*
     ```
 
-   # JSP Setting
-   
-   spring.mvc.view.prefix=/WEB-INF/views/
-   spring.mvc.view.suffix=.jsp
-   # JSP Auto-Configuration
-   server.servlet.jsp.init-parameters.development=true
-   ```
-
-
-
-
-
 
 
 
@@ -65,3 +53,4 @@ RESULTFUL API
     leaflet
    map
    -marker, popup 
+   kakao map, login
