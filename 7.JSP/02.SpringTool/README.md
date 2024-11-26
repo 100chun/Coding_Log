@@ -178,43 +178,56 @@ SQL Mapper (MyBatis)
 * MyBatis Framework : JDBC 기능, 자바 객체와 SQL 매핑기능 제공
 
 1. Mapper.java + Dao
-**HomeMapper.java**
 ```
+*HomeMapper.java
 @Mapper		// MyBatis Mapper Annotation
 public interface HomeMapper {
     @Insert(value="insert into tbl_home values(#{id}, #{pw}, #{name})")
     public int Insert(HomeDto dto);
-    @Update(value=)
-    @Select()
-    @Delete()
-
 }
 ```
 
 2. Mapper.xml + Mapper.java + Dao
 ```
-<update id="Update_xml" parameterType="com.example.ex01.domain.dto.MemoDto">
-		update tbl_memo set text=#{text}, writer=#{writer}, where id=#{id}
-	</update>
+* Mapper.xml
+<mapper namespace="com.example.ex01.domain.mapper.HomeMapper">    // Mapper.java 경로
+    <update id="Update_xml" parameterType="com.example.ex01.domain.dto.HomeDto">  // dto 경로
+        update tbl_memo set id=#{id}, pw=#{pw}, where name=#{name}   	  // dto의 객체 #{}
+    </update>
+</mapper>
 
-public int Update_xml(MemoDto memoDto);
+* HomeMapper.java
+public int Update_xml(MemoDto memoDto);    // Mapper.xml의 함수 선언
 ```
 
-public int insert(MemoDto dto) throws SQLException {
-		sqlSession.insert(namespace + "Insert", dto);	// namespace경로 안의 Insert 함수에 dto 넣기
-		return dto.getId();
-	}
+
+
+** Transaction : 데이터 베이스의 작업 단위**
+ - 작업 중 비정상적 종료 시에 작업 전으로 반환
+ - Commit : 작업 마지막에 작성하는 전체를 실행하는 함수
+ - Rollback : 예외 문에 작성하는 작업 전으로 되돌리는 함수
+**Config**
+```
+@Autowired  
+private DataSource dataSource;
+
+@Bean    // TxManager 추가
+public DataSourceTransactionManager transactionManager() {
+    return new DataSourceTransactionManager(dataSource);
+}
+```
+
+**Service**
+```
+@Transactional(rollbackFor = SQLException.class) 	// default 특정 유형의 에러 발생 시에 롤백
+public boolean memoAddTx(MemoDto memoDto) throws Exception {
+    int result = memoDao.insert(memoDto);
+    return result>0;
+}
+```
 
 
 
-
-
-sqlmapper
-//Annotaion 을 이용한 Mapping
-	@Insert(value="insert into tbl_memo values(null,#{text},#{writer},now())")
-	public int Insert(MemoDto memoDto);
- 
-orm
 
 
 tx : rollbackfor____
