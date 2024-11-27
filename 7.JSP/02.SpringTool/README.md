@@ -202,23 +202,20 @@ public int Update_xml(MemoDto memoDto);    // Mapper.xml의 함수 선언
 
 
 
-** Transaction : 데이터 베이스의 작업 단위**
+**Transaction : 데이터 베이스의 작업 단위**
  - 작업 중 비정상적 종료 시에 작업 전으로 반환
  - Commit : 작업 마지막에 작성하는 전체를 실행하는 함수
  - Rollback : 예외 문에 작성하는 작업 전으로 되돌리는 함수
-**Config**
 ```
+* Config
 @Autowired  
 private DataSource dataSource;
-
 @Bean    // TxManager 추가
 public DataSourceTransactionManager transactionManager() {
     return new DataSourceTransactionManager(dataSource);
 }
-```
 
-**Service**
-```
+* Service
 @Transactional(rollbackFor = SQLException.class) 	// default 특정 유형의 에러 발생 시에 롤백
 public boolean memoAddTx(MemoDto memoDto) throws Exception {
     int result = memoDao.insert(memoDto);
