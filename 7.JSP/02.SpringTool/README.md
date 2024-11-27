@@ -177,7 +177,7 @@ SQL Mapper (MyBatis)
 -------------------
 * MyBatis Framework : JDBC 기능, 자바 객체와 SQL 매핑기능 제공
 
-1. Mapper.java + Dao
+**1. Mapper.java + Dao**
 ```
 *HomeMapper.java
 @Mapper		// MyBatis Mapper Annotation
@@ -187,7 +187,7 @@ public interface HomeMapper {
 }
 ```
 
-2. Mapper.xml + Mapper.java + Dao
+**2. Mapper.xml + Mapper.java + Dao**
 ```
 * Mapper.xml
 <mapper namespace="com.example.ex01.domain.mapper.HomeMapper">    // Mapper.java 경로
@@ -199,8 +199,6 @@ public interface HomeMapper {
 * HomeMapper.java
 public int Update_xml(MemoDto memoDto);    // Mapper.xml의 함수 선언
 ```
-
-
 
 **Transaction : 데이터 베이스의 작업 단위**
  - 작업 중 비정상적 종료 시에 작업 전으로 반환
@@ -223,12 +221,15 @@ public boolean memoAddTx(MemoDto memoDto) throws Exception {
 }
 ```
 
-
-
 **AOP**
-- Aspect-Oriented Programming : 관점 지향 프로그래밍
-- 프로그램을 핵심, 부가적 기능으로 나누어 모듈화
-aop?
+- Aspect-Oriented Programming : 프로그램을 공통 사항을 모듈화
+* Aspect : 공통 관심 사항의 모듈화
+* Join Point : Aspect의 적용 위치 - 메서드 호출 위치
+* Advice : Join Point의 전, 후 정의
+* PointCut : Join Point의 부분 집합 - Advice 적용 위치 선별
+* Target : Advice 적용 객체
+
+- 
 file, up, download (fiolder create)
 crud axios
 intercreptor
