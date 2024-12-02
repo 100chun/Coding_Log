@@ -106,7 +106,7 @@
 </filter-mapping>  
 ```
 
-## Spring Basic
+# Spring Basic
 * Spring Bean : Spring 프로그램이 관리하는 자바 객체 (외부 라이브러리)
 * Context : Bean이 담긴 컨테이너
   * web.xml : servlet, root eontext의 경로 설정
@@ -124,6 +124,7 @@
 * @Controller : MVC Controller 등록 (View Return)
 * @RestController : View에 응답하지 않는 Controller 등록 (method Return)
 * @RequestMapping : 처리 method, 응답 방식 등록
+* @RequestParam : Http 요청 파라미터의 이름으로 바인딩하여 그 값을 변수에 저장
 
 **lombok Annotation**
 * @Data : Getter + Setter + RequiredArgsConstructor + ToString
