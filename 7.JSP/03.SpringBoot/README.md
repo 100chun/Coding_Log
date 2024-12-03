@@ -96,18 +96,30 @@ security
 7. Scope (사용 개인정보) 설정
 **application.properties**
 ```
-spring.security.oauth2.client.registration.kakao.client-id=                                                          // Kakao Develper 등록 후에 얻은 Client Id
-spring.security.oauth2.client.registration.kakao.client-secret=                                                      // 보안을 위해 활성화한 Client Secret 값
-spring.security.oauth2.client.registration.kakao.client-authentication-method=client_secret_post                     // OAuth2 인증 방식 (Http Post 방식으로 전달)
-spring.security.oauth2.client.registration.kakao.redirect-uri=http://localhost:8080/login/oauth2/code/kakao          // 인증 후에 인증 코드 전달 URL
-spring.security.oauth2.client.registration.kakao.authorization-grant-type=authorization_code                         // authorization_code 인증 방식
-spring.security.oauth2.client.registration.kakao.scope=profile_nickname,profile_image,account_email                  // 사용 Scope
-spring.security.oauth2.client.registration.kakao.client-name=Kakao                                                   // Client 이름 정의
-spring.security.oauth2.client.kakao.logout.redirect.uri=http://localhost:8080/login                                  // 로그아웃 후의 Redirect 경로
+// Kakao Develper 등록 후에 얻은 Client Id
+spring.security.oauth2.client.registration.kakao.client-id=
+// 보안을 위해 활성화한 Client Secret 값                                                          
+spring.security.oauth2.client.registration.kakao.client-secret=
+// OAuth2 인증 방식 (Http Post 방식으로 전달)                                                      
+spring.security.oauth2.client.registration.kakao.client-authentication-method=client_secret_post
+// 인증 후에 인증 코드 전달 URL                     
+spring.security.oauth2.client.registration.kakao.redirect-uri=http://localhost:8080/login/oauth2/code/kakao
+// authorization_code 인증 방식          
+spring.security.oauth2.client.registration.kakao.authorization-grant-type=authorization_code
+// 사용 Scope
+spring.security.oauth2.client.registration.kakao.scope=profile_nickname,profile_image,account_email
+// Client 이름 정의                  
+spring.security.oauth2.client.registration.kakao.client-name=Kakao
+// 로그아웃 후의 Redirect 경로            
+spring.security.oauth2.client.kakao.logout.redirect.uri=http://localhost:8080/login                                  
 
 #KAKAO PROVIDER
+// authorization URL
 spring.security.oauth2.client.provider.kakao.authorization-uri = https://kauth.kakao.com/oauth/authorize
+// token URL
 spring.security.oauth2.client.provider.kakao.token-uri = https://kauth.kakao.com/oauth/token
+// 사용자 개인정보 획득 URL
 spring.security.oauth2.client.provider.kakao.user-info-uri = https://kapi.kakao.com/v2/user/me
+// id Attribute를 통하여 사용자 식별
 spring.security.oauth2.client.provider.kakao.user-name-attribute = id
 ```
