@@ -62,6 +62,34 @@ security
    oauth2
 
 
+# Thymeleaf
+* 컨트롤러의 전달 데이터를 이용해 동적 화면 생성
+* 순수 HTML 구조 (Natural Template) -> 수정 시 서버 재가동 불필요
+* Server X : 웹은 타임리프 속성(th:) 인식 불가 -> 순수 HTML 구조
+* Server O : HTML 속성을 타임리프 속성으로 대체 -> 동적 HTML          
+
+|문법|정의|활용|
+|-|-|-|
+|@{URL}|URL 링크 표현식|th:href="@{/css/bootstrap.min.css}"|
+리터럴
+https://jddng.tistory.com/223
+```
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">    // 타임리프 사용
+    <body>
+        Name : <span th:text="${name}></span>            // th: = 타임리프 구문
+    </body>
+</html>
+
+```
+
+
+
+
+
+
+
+
+
 
 
 
@@ -69,6 +97,8 @@ security
 
 
 # Security
+* Security : 홈페이지에 인증 권한을 빠르게 추가 가능한 프레임워크
+* principal : User 정보에 대한 인터페이스
 
 ### OAuth2 Client (Open Authorization)
 * 웹사이트 서드파티 어플리케이션(Google, Kakao)을 통해 인증권한을 획득 가능한 프로토콜
@@ -93,7 +123,7 @@ security
 4. 로그인 Redirect URI 등록 (http://localhost:8080/api/v1/oauth2/kakao)
 5. 로그아웃 Redirect URI 등록 (http://localhost:8080/login)
 6. Client Secret 코드 생성, 확성화
-7. Scope (사용 개인정보) 설정
+7. Scope (사용 개인정보) 설정           
 **application.properties**
 ```
 // Kakao Develper 등록 후에 얻은 Client Id
@@ -123,3 +153,5 @@ spring.security.oauth2.client.provider.kakao.user-info-uri = https://kapi.kakao.
 // id Attribute를 통하여 사용자 식별
 spring.security.oauth2.client.provider.kakao.user-name-attribute = id
 ```
+
+
