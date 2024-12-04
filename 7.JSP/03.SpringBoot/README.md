@@ -98,7 +98,10 @@ https://jddng.tistory.com/223
 
 # Security
 * Security : 홈페이지에 인증 권한을 빠르게 추가 가능한 프레임워크
-* principal : User 정보에 대한 인터페이스
+* Authentication : User의 인증 정보 (getPrincipal(), getCredentials())
+  * principal : User 정보에 대한 인터페이스 (getName())
+  * credential : Principal에 접근을 위한 암호
+  * grantedAuthority : User의 권한 인터페이스 (ROLE_USER, ROLE_ADMIN)
 
 ### OAuth2 Client (Open Authorization)
 * 웹사이트 서드파티 어플리케이션(Google, Kakao)을 통해 인증권한을 획득 가능한 프로토콜
@@ -155,3 +158,53 @@ spring.security.oauth2.client.provider.kakao.user-name-attribute = id
 ```
 
 
+## JWT Token
+**Jason Web Token : 기본 Cookie가 아닌 Json으로 정보를 저장하는 Web Token**
+* Header + Payload + Signature로 구성 = hhhh.pppp.ssss
+ * Header(헤더) : Signature 해싱을 위한 알고리즘 정보 저장 (검증)
+    * typ : 토큰의 타입 = JWT
+    * alg : 서명용 알고리즘
+    * kid : 서명 키 식별 값
+ * Payload(정보) : 실 사용 정보 저장
+    * claim : 속성 (Key - Value)
+    * claim set : 여러 개의 속성들
+* Signature(서명) : 인코딩, 검증에 필요한 암호화 코드
+         
+**Login_JWT**
+```
+* Token 속성 정의
+public class TokenKey {
+    private String grantType;
+    private String accessToken;
+    private String refreshToken;}
+
+* JWT 설정
+public class JwtProperties {
+    public static final int EXPIRATION_TIME = 60000;                   // 토큰 만료 시간
+    public static final String COOKIE_NAME = "JWT-AUTHENTICATION"; }   // 토큰 명
+
+* 서명 암호 코드 생성
+public class SignGenerator {
+    public static byte[] genSign() {
+        SecureRandom secureRandom = new SecureRandom();    // 난수 생성 객체
+        byte[] signBytes = new byte[256/8];                // 256 바이트 배열 생성
+        secureRandom.nextBytes(signBytes);                 // 배열에 난수 삽입
+        return signBytes;                                  // 서명용 배열 반환
+    }    
+}
+
+* JWT Access, Refresh 토큰 생성 - 서명에 헤더, 내용 추가 
+public Tokenkey genJwt(Authentication authentication) {
+    String authorities = authentication.getAuthorities().stream()    
+        .map(GrantedAuthority::getAuthority)                        // 권한 명 추출
+        .collect(Collectors.joining(","));                          // 추출 권한 집합 (ROLE_USER, ROLE_ADMIN)
+    long now = (new Date()).getTime();
+
+}
+
+* JWT 토큰 복호화, 검증
+
+* Security.Config : JWT Filter 추가
+http.addFilterBefore(new JwtFilter(userRepository, jwtTokenProvider), BasicAuthenticationFilter.class);
+
+```
