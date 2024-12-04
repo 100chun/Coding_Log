@@ -198,11 +198,37 @@ public Tokenkey genJwt(Authentication authentication) {
     String authorities = authentication.getAuthorities().stream()    
         .map(GrantedAuthority::getAuthority)                        // 권한 명 추출
         .collect(Collectors.joining(","));                          // 추출 권한 집합 (ROLE_USER, ROLE_ADMIN)
-    long now = (new Date()).getTime();
-
+    long now = (new Date()).getTime();                              // 현재 시각 객체
+    // AccessToken 생성
+    Data accessTokenExpire = new Data(now + JwtProperties.EXPIRATION_TIME);        // 현재+설정 만료시간=만료 기한
+    String accessToken = Jtws.builder()                    // JWT 객체 생성
+        .setSubect(authentication.getName())               // 토큰 주체 설정 = 사용자명
+        .claim("username", authentication.getName())       // 데이터 추가
+        .claim("auth", authorities)    
+        .claim("provider", userDto.getProvider())
+        .setExpiration(accessTokenExpire)                 // 만료 기한
+        .signWith(key, SignatureAlgorithm.HS256)          // 서명 알고리즘
+        .compact();                                       // Token 생성
+    // RefreshToken 생성
+    String refreshToken = Jwts.builder()
+        .setExpiration(new Date(now + 86400000))          // 24시간 후까지
+        .signWith(key, SignatureAlgorithm.HS256)
+        .compact();
+    return TokenKey.builder()             
+        .grantType("Bearer")            // Bearer Type : Authorization header type
+        .accessToken(accessToken)       // 생성 accessToken
+        .refreshToken(refreshToken)     // 생성 refreshToken
+        .build();                       // 객체 반환
 }
 
 * JWT 토큰 복호화, 검증
+public Authentication getAuthentication(String accessToken) {
+    Claims claims = parseCliams(accessToken);                            // accessToken을 복호화한 claims 객체
+    Collection< ? extends GrantedAuthority> authorities =                // GrantedAuthority의 문자열
+        Arrays.stream(claims.get("auth").toString().split(","))          // , 로 구분된 것을 분리하여
+            .map(auth -> new SimpleGrantedAuthority(auth))               // Map 생성
+            .collect(Collectors.toList());
+}
 
 * Security.Config : JWT Filter 추가
 http.addFilterBefore(new JwtFilter(userRepository, jwtTokenProvider), BasicAuthenticationFilter.class);
