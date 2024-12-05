@@ -34,8 +34,17 @@
 [DataBase](6.DataBase/README.md)                
 
 **07.JSP (10/18 ~ )**            
-[07.화면설계.pdf](https://github.com/user-attachments/files/17694029/07.pdf)              
+[07.화면설계.pdf](https://github.com/user-attachments/files/17694029/07.pdf)  
 [Jsp_Basic](7.JSP/01.Jsp_Basic/README.md)              
 [SpringBoot](7.JSP/02.SpringBoot/README.md)             
 
+
+
+
+
+
+
+<img src="https://img.shields.io/badge/FF9900?style=for-the-badge&logo=amazon&logoColor=white">
+
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 
