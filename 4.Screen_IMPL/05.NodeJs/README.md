@@ -12,3 +12,8 @@ npm parcel index.html -> 경로 -> 검색
 
 github 올릴때는 gitignore.io 이용해서 node 빼고 올리기
 
+
+create react-app
+에로 -> node.modlues, lock 삭제 -> npm install
+
+webVital 삭제 index.js
