@@ -1,12 +1,16 @@
-# 맵 캘린더
-구현 프로그램 로고
+# 맵 캘린더 - 이름
+ 구현 프로그램 로고
 
 ## Intrudution
- 개인의 일정을 위치와 함께 저장할 수 있으며, 주변의 행사 정보를 알 수 있는 웹 페이지
+ 개인의 일정을 위치와 함께 저장하고, 주변의 행사 정보를 알 수 있는 웹 페이지
+
+ ## 기능
  
 
-History
-------------------------
+----------------------
+
+# History
+
 ### Plans
 |Part|Date|Details|Skill|
 |-|-|-|-|
@@ -15,8 +19,8 @@ History
 ||||
 
 
-### ERD
+## ERD
 
-### End Point Documents
+## End Point Documents
 
-### Filter Tree
+## Filter Tree
