@@ -7,6 +7,8 @@ SpringBoot, myBatis,
  ## 기능
  
 
+
+
 ----------------------
 
 # History
@@ -17,6 +19,20 @@ SpringBoot, myBatis,
 |홈 화면|12/20~12/21|홈 화면 FN/BN|JspServlet...|
 ||||
 ||||
+
+1. backend
+depencencies : web, devtool, starter, lombok, mySql
+
+
+2. frontend
+C:\Users\black>node -v
+v22.12.0
+C:\Users\black>npm -v
+10.9.0
+
+   
+
+
 
 
 ## ERD
